@@ -1,1 +1,10 @@
-/target/
+/.settings
+/.project
+/.classpath
+/target
+.idea
+.editorconfig
+/email/*.log
+
+.classpath
+.project
