@@ -1,0 +1,343 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>确认订单</title>
+
+    <link href="css/global.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="css/x_phone.css">
+    <link rel="stylesheet" type="text/css" href="css/c_index.css">
+    
+  <!--   <link rel="stylesheet" type="text/css" href="css/main.css"> -->
+    <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+    <!-- <script type="text/javascript" src="js/main.js"></script> -->
+    
+    <script type="text/javascript" src="js/adaption.js"></script>
+    <script type="text/javascript" src="js/general.js"></script>
+    <!--  <script type="text/javascript" src="js/xiong.js"></script>-->
+    <style>
+    
+    </style>
+</head>
+
+<body>
+    <!--body-->
+    <div class="body" >
+        <!--placeorder-->
+        <div class="placeorder">
+            <div class="c_order"><span>请确认订单信息</span></div>
+            <div class="c_order_quan clearfix" id='activeinfo'>
+                <dl>
+                    <dt class="c_order_img" id="image"><img src="img/orimg.jpg" /></dt>
+                    <dd class="c_order_titel"><span  id="title">冰岛 砂浆建筑 2日游</span></dd>
+                    <dd class="c_order_ms"><span id="desc">Marriott Hotel New York</span></dd>
+                    <!-- <dd class="c_order_ms"><span>Lakers Street 23/1, New York </span></dd> -->
+                </dl>
+            </div>
+            <div class="c_order_xx">
+                <div class="c_order_one">
+                    <ul>
+                        <li class="clearfix">
+                            <span class="fl x_cxrq">入住日期</span>
+                            <span class="fr" id="dateFrom">2016-10-21</span>
+                        </li>
+                        <li class="clearfix">
+                            <span class="fl x_cxrq">离开日期</span>
+                            <span class="fr" id="dateTo">2016-10-21</span>
+                        </li>
+                        <li class="clearfix">
+                            <span class="fl x_cxrq">房间数</span>
+                            <span class="fr" id="roomMsg">大床房：1间  标准间：2间</span>
+                        </li>
+                        <li class="clearfix">
+                            <span class="fl addpeople">选择出行人</span>
+                            <span class="fr">（共<span class="totalcontacts">0</span>人）</span>
+                        </li>
+                        
+                    </ul>              
+                </div>        
+                <div class="c_order_cxr">             
+                    <ul class="order_pass_list">
+                        <!-- <li>
+                          <div class="choose-b" >
+                               <img src="img/choose.jpg"/>
+                          </div>
+                          <p class="order_pass_list_tit"><span class="down"></span>
+                            <label>郭瑞</label>
+                          </p>
+                          <div class="order_pass_info">
+                            <dl>
+                              <dt>乘客姓名：</dt>
+                              <dd>郭瑞</dd>
+                            </dl>
+                            <dl>
+                              <dt>证件类型：</dt>
+                              <dd>身份证</dd>
+                            </dl>
+                            <dl>
+                              <dt>证件号码：</dt>
+                              <dd>2201201984020455XX</dd>
+                            </dl>
+                            <dl>
+                              <dt>手机号码：</dt>
+                              <dd>187XXXX0245</dd>
+                            </dl>
+                          </div>
+                        </li>  -->
+                    </ul>
+                </div>                                    
+                <div class="c_order_bd clearfix">
+                    <form id="from_traveler" action="">
+                        <div class="c_order_xm">
+                            <input type="text" name="name" id="name" placeholder="姓名" />
+                        </div>
+                        <div class="c_order_xm">
+                            <input type="text" name="tel" id="tel" placeholder="联系电话" />
+                        </div>
+                        <div class="c_order_xm">
+                            <select type="text" name="IDcard" id="IDType" style="border:none;" >
+                                <option style="border:none;">身份证</option>
+                                <option style="border:none;">其他</option>
+                            </select>
+                        </div>
+                        <div class="c_order_xm">
+                            <input type="text" name="IDcard" id="IDcard" placeholder="证件号码" />
+                        </div>
+                        <div class="c_order_tj">
+                            <label>
+                                <button type="submit">添加出行人</button>
+                            </label>
+                        </div>
+                    </form>
+                </div>
+            <div class="part">
+                <div class="part-title"><span ></span><span>联系人</span></div>
+                 <div class="part-main">
+                    <div><label>联系人</label><input style="border-bottom: solid 1px #edecee; line-height: 0.4rem;" type="text" value=""/></div>
+                    <div><label>手机号</label><input style="border-bottom: solid 1px #edecee; line-height: 0.4rem;" type="text" value=""/></div>
+                </div> 
+            </div>
+            <!--<div class="c_order_two">
+                 <div class="c_order_bd"
+                    <form id="from_traveler" action="">
+                        <div class="c_order_xm">
+                            <input type="text" name="name" id="name" placeholder="姓名" />
+                        </div>
+                        <div class="c_order_xm">
+                            <input type="text" name="IDcard" id="IDcard" placeholder="身份信息" />
+                        </div>
+                        <div class="c_order_xm">
+                            <input type="text" name="tel" id="tel" placeholder="联系方式" />
+                        </div>
+                         <div class="c_order_tj">
+                            <label>
+                                <button type="submit">+</button><span>添加出入行人</span>
+                            </label>
+                        </div>
+                    </form>
+                </div> 
+                </div>-->
+                <div class="c_order_qr">
+                	<label id="btn_protocol" for="protocol" style="background: red;">
+                		<img src="img/qr.jpg" />
+                	</label>
+                	<input type="text" name="protocol" id="protocol" value="1" style="display: none;" />
+                	<span>我已阅读产品须知及退改规定。</span>
+                	<a href="#">详细</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--placeorder end-->
+    </div>
+    <!--body end-->
+    <div class="c_order_foot" >
+        <div class="c_order_footleft">
+            <div class="c_order_foojg">价格:<span>￥<span id="amount">16.00</span></span></div>
+        </div>
+        <div class="c_order_footright"><a href="#">确认订单</a></div>
+    </div>
+    <!-- <script type="text/javascript" src="js/lc_switch.js"></script> -->
+    <script>
+    var paxList=
+    $(document).ready(function(e) {
+        if(window.localStorage.selectInfo==undefined || window.localStorage.selectInfo==null || window.localStorage.hotelInfos==undefined || window.localStorage.hotelInfos==null){
+            alert('入口有误');
+            return;
+        }
+        var selectInfo = JSON.parse(window.localStorage.selectInfo);
+        var hotelInfos = JSON.parse(window.localStorage.hotelInfos);
+
+        console.log(selectInfo);
+        console.log(hotelInfos);
+        /*var activeinfo = '<dl>'+
+                         '<dt class="c_order_img"><img src="'+hotelInfos.hotel.images.list[0].imageUrl+'" /></dt>'+
+                            '<dd class="c_order_titel"><span  id="title">'+hotelInfos.title+'</span></dd>'+
+                            '<dd class="c_order_ms"><span id="desc">'+hotelInfos.desc+'</span></dd>'+
+                         '</dl>';
+
+        $('#activeinfo').html(activeinfo);*/
+        $('#image').html('<img src="'+hotelInfos.hotel.images.list[0].imageUrl+'" />');
+        $('#title').html(hotelInfos.title);
+        $('#desc').html(hotelInfos.desc);
+        $('#dateFrom').html(selectInfo.datefrom);
+        $('#dateTo').html(selectInfo.dateto);
+        var roomMsg = '';
+        if(selectInfo.singlecount != '0'){
+            roomMsg +='大床房：'+selectInfo.singlecount+'间&nbsp;&nbsp;&nbsp;&nbsp;';
+        }
+        if(selectInfo.doublecount != '0'){
+            roomMsg +='标准间：'+selectInfo.doublecount+'间';
+        }
+        $('#roomMsg').html(roomMsg);
+        $('#amount').html(selectInfo.totalsum);
+        
+        var weburl = 'http://localhost:91/web';
+        $.ajax({
+            type:"get",
+            url:weburl+"/contract/getList",
+            dataType:"json",
+            contentType:'application/json;charset=utf-8',
+            success:function(data){
+                console.log(data);
+                if(data.success){
+                    var html="";
+                    $.each(data.data,function(index,contact){
+                        html+='<li><div class="choose-a" ><input type="checkbox" name="" /></div><p class="order_pass_list_tit"><span class="down"></span><label>'+contact.name+'</label></p><div class="order_pass_info"><dl><dt>乘客姓名：</dt><dd>'+contact.name+'</dd></dl><dl><dt>证件类型：</dt><dd>'+contact.idType+'</dd></dl><dl><dt>证件号码：</dt><dd>'+contact.idNo+'</dd></dl><dl><dt>手机号码：</dt><dd>'+contact.mobileNo+'</dd></dl></div></li>';
+                    })
+                    $(".order_pass_list").html(html);
+                    
+                    $(".choose-a").click(function(){
+                       $(this).toggleClass( "onchecked" );
+                       var totalcontacts=$("input[type='checkbox']:checked").length;
+                       $(".totalcontacts").text(totalcontacts);
+                    });
+                    $(".order_pass_list_tit").children("span").click(function() {
+                        if ($(this).hasClass("down")) {
+                            $(this).removeClass("down");
+                            $(this).addClass("up");
+                            $(this).parent(".order_pass_list_tit").siblings(".order_pass_info").show();
+                        } else {
+                            $(this).removeClass("up");
+                            $(this).addClass("down");
+                            $(this).parent(".order_pass_list_tit").siblings(".order_pass_info").hide();
+                        };
+                    });
+                }
+            }
+        });
+
+
+
+        $('body').delegate('.lcs_check', 'lcs-statuschange', function() {
+            var status = ($(this).is(':checked')) ? 'checked' : 'unchecked';
+            console.log('field changed status: ' + status);
+        });
+
+        // triggered each time a field is checked
+        $('body').delegate('.lcs_check', 'lcs-on', function() {
+            console.log('field is checked');
+        });
+
+
+        // triggered each time a is unchecked
+        $('body').delegate('.lcs_check', 'lcs-off', function() {
+            console.log('field is unchecked');
+        });
+
+        //取消选定产品须知
+        $("#btn_protocol").click(function(){
+        	var _protocol=$("#protocol").val();
+        	if(_protocol==1){
+        		$("#protocol").val(0);
+        		$(this).children("img").prop("src","img/qr_cancel.jpg");
+        	}
+        	else{
+        		$("#protocol").val(1);
+        		$(this).children("img").prop("src","img/qr.jpg");
+        	}
+        });
+
+        //输入框点击聚焦
+        $("input:text").focus(function(){
+        	$(this).css("border","1px solid #e4c23c");
+        });
+        $("input:text").blur(function(){
+        	$(this).css("border","none");
+        });
+        $("select").focus(function(){
+            $(this).css("border","1px solid #e4c23c");
+        });
+        $("select").blur(function(){
+            $(this).css("border","none");
+        });
+        
+        //添加出行人
+        var traveler_num=1;
+        $("#from_traveler").submit(function(){
+        	var _name=$("#name").val();
+                _tel=$("#tel").val();
+                _IDType=$("#IDType").val();//没验证是否为空
+                _IDcard=$("#IDcard").val();
+        		
+            if(_name==""){
+                $("#name").attr("placeholder","请输入您的姓名");
+                $("#name").css("border","1px solid #e4c23c");
+                $("#name").focus();
+                return false;
+            }
+            else if(_IDcard==""){
+                $("#IDcard").attr("placeholder","请输入您的证件号码");
+                $("#IDcard").css("border","1px solid #e4c23c");
+                $("#IDcard").focus();
+                return false;
+            }
+            else if(!(/(^\d{15}$)|(^\d{17}([0-9]|X)$)/.test(_IDcard))){
+                $("#IDcard").attr("placeholder","您的身份信息有误，请重新输入");
+                $("#IDcard").focus().val("").css("border","1px solid #e4c23c");
+                return false;
+            }
+            else if(_tel==""){
+                $("#tel").attr("placeholder","请输入您的联系方式");
+                $("#tel").css("border","1px solid #e4c23c");
+                $("#tel").focus();
+                return false;
+            }
+            else if(!(/^1\d{10}$/.test(_tel))){
+                $("#tel").attr("placeholder","您的手机号码有误，请重新输入");
+                $("#tel").focus().val("").css("border","1px solid #e4c23c");
+                return false;
+            }
+            else{
+                /*traveler_num++;
+                $(".c_order_cxr").append('<dl><dt class="c_order_xr">出行人'+traveler_num+'</dt><dd class="c_order_name">*<span>'+_name+'</span></dd><dd class="c_order_hm">'+_tel+'</dd></dl>');
+                $("#from_traveler input").val("");
+                $("#from_traveler input").css("border","none");
+                return false;*/
+                var contract={};
+                contract.name=$("#name").val(); 
+                contract.mobileNo=$("#tel").val();
+                contract.idType=$("#IDType").val();//没验证是否为空
+                contract.idNo=$("#IDcard").val();
+                var weburl = 'http://localhost:91/web';
+                 $.ajax({
+                            type:"post",
+                            url:weburl+"/contract/add",
+                            dataType:"json",
+                            contentType:'application/json;charset=utf-8',
+                            data:JSON.stringify(contract),// 
+                            success: function(data) {
+                                 //GetAddressInfo();//修改地址成功，重新加载数据页面
+                                 window.location.reload();
+                            }
+                        }); 
+            }
+        });
+    });
+    </script>
+</body>
+
+</html>

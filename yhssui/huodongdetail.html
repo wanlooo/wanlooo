@@ -1,0 +1,221 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="css/global.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="js/adaption.js"></script>
+	<script src="js/jquery-1.12.4.min.js"></script>
+    <!-- 根据不同的屏幕大小，调用不同的样式 -->
+    <link rel="stylesheet" type="text/css" href="css/h_phone.css">
+    <link rel="stylesheet" href="css/swiper.min.css" />
+</head>
+
+<body>
+    <!--头部 start-->
+   <!--  <div class="head">
+        <img src="img/wangfei_02.jpg" />
+    </div> -->
+    <!--头部 end-->
+    <!--身体 start-->
+    <!-- <div class="body">
+        <div class="theme">
+            <h3>FAYE 2010～2012</h3>
+            <p>北京工人体育馆 王菲个人演唱会</p>
+        </div>
+        <div class="money">
+            <div class="left">
+                <h4 style="width: 100%;">¥160～480</h4>
+                <span>票价</span>
+            </div>
+            <div class="right">
+                <ul>
+                    <li><img src="img/shop_10.jpg" /></li>
+                    <li><img src="img/shop_10.jpg" /></li>
+                    <li><img src="img/shop_10.jpg" /></li>
+                    <li><img src="img/shop_10.jpg" /></li>
+                    <li><img src="img/shop_13.jpg" /></li>
+                </ul>
+                <span>星级</span>
+            </div>
+        </div>
+        <div class="date">
+            <p>2016-10-1~2016-10-7</p>
+        </div>
+        <div class="address">
+            <h4>北京工人体育馆</h4>
+            <p>北京市朝阳区三里屯工人体育
+                <br>场北路</p>
+        </div>
+        <div class="concert">
+            <p>2014李宇春Why Me Chris Lee (大连) 演唱会将于10月5日正式开启</p>
+        </div>
+        <div class="carousel nav">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="img/wangfei_09.jpg" alt="" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/wangfei_09.jpg" alt="" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/wangfei_09.jpg" alt="" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/wangfei_09.jpg" alt="" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/wangfei_09.jpg" alt="" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/wangfei_09.jpg" alt="" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!--身体 end-->
+    <div class="purchase"><a href="#">购买</a></div>
+    <script type="text/javascript" src="js/swiper-3.3.1.jquery.min.js"></script>
+    <script>
+
+    var weburl = 'http://localhost:91/web';
+    $(function(){
+        $.ajax({
+            type:"get",
+            url:"yhssui/json/huodongDetail.json",
+            dataType:"json",
+            contentType:'application/json;charset=utf-8',
+            success:function(data){
+                console.log(data);
+
+                if(data.success){
+                    var hotactive=data.hot_active;
+                    var html="";
+                    html+='<div class="head"><img src="'+hotactive.image+'" /></div>';
+                    html+='<div class="body"><div class="theme"><h3>'+hotactive.title+'</h3><p>'+hotactive.desc+'</p></div>';
+                    html+='<div class="money"><div class="left"><h4 style="width: 100%;">¥'+hotactive.price_min+'～'+hotactive.price_max+'</h4><span>票价</span></div>';
+                    html+='<div class="right"><ul>';
+                    //拼星星
+                    html+=starNum(hotactive.star,"img/shop_10.jpg","img/shop_13.jpg");
+                   
+                    html+='</ul><span>星级</span></div></div>';
+                    html+='<div class="date"><p>'+hotactive.date_start+'~'+hotactive.date_end+'</p></div>';
+                    html+='<div class="address"><h4>'+hotactive.venue+'</h4><p>'+hotactive.address+'</p></div>';
+                    html+='<div class="concert"><p>'+hotactive.detail+'</p></div>';
+                    html+='<div class="carousel nav"><div class="swiper-container"><div class="swiper-wrapper">';
+                    //拼图片
+                    $.each(data.recommend,function(i,imgsrc){
+                        html+='<div class="swiper-slide"><img src="'+imgsrc.image+'" alt="" /></div>';
+                    })
+                    html+='</div></div></div></div>';
+                    console.log(html);
+                    $(".purchase").before(html);
+                    var swiper = new Swiper('.swiper-container', {
+                        pagination: '.swiper-pagination',
+                        slidesPerView: 4.5,
+                        paginationClickable: true,
+                    });
+                }
+            }
+            
+
+        })
+    })
+    //显示几颗星
+    function starNum(num,src1,src2){
+        var html="";
+        for(var i=0;i<num;i++){
+            html+='<li><img src="'+src1+'"/></li>';
+        }
+        for(var j=0;j<5-num;j++){
+            html+='<li><img src="'+src2+'"/></li>';
+        }
+        return html;
+    }
+    //全局变量，触摸开始位置
+    var startX = 0,
+        startY = 0;
+
+    //touchstart事件
+    function touchSatrtFunc(evt) {}
+
+    //touchmove事件，这个事件无法获取坐标
+    function touchMoveFunc(evt) {}
+
+    function touchEndFunc(evt) {
+        setTimeout(function() {
+            var _total_length = $(".on li").length;
+            $(".on li").each(function() {
+                var _this_zindex = $(this).css("z-index");
+                if (_this_zindex != _total_length) {
+                    console.log($(this));
+                    $(this).children(".sccontent").find("div").slideUp();
+                    $(this).children(".sccontent").find("p").slideUp();
+                } else {
+                    $(this).children(".sccontent").find("div").slideDown();
+                    $(this).children(".sccontent").find("p").slideDown();
+                }
+            });
+        }, 500);
+    }
+    //绑定事件
+    function bindEvent() {
+        document.addEventListener('touchstart', touchSatrtFunc, false);
+        document.addEventListener('touchmove', touchMoveFunc, false);
+        document.addEventListener('touchend', touchEndFunc, false);
+    }
+    window.onload = bindEvent;
+    </script>
+    <script type="text/javascript">
+    $(function() {
+        $(".linecontent:eq(0)").addClass("on").siblings().removeClass("on");
+        n = $('.line li').size() - 2;
+        var wh = 100 * n + "%";
+        $('.line').width(wh);
+        var lt = (100 / n / 4) + 2.5;
+        var lt_li = lt + "%";
+        $('.line li').width(lt_li);
+        var y = 0;
+        var w = n / 2;
+        $(".line").swiper({
+            swipeLeft: function() {
+                if (y == -lt * w) {
+                    //                  alert('已经到最后页');
+                } else {
+                    y = y - lt;
+                    var t = y + "%";
+                    $(this).css({
+                        '-webkit-transform': "translate(" + t + ")",
+                        '-webkit-transition': '500ms linear'
+                    });
+                }
+            },
+            swipeRight: function() {
+                if (y == 0) {
+                    //                  alert('已经到第一页') 
+                } else {
+                    y = y + lt;
+                    var t = y + "%";
+                    $(this).css({
+                        '-webkit-transform': "translate(" + t + ")",
+                        '-webkit-transition': '500ms linear'
+                    });
+                }
+            }
+        });
+    });
+    </script>
+    
+</body>
+<script type="text/javascript" src="js/swiper.js"></script>
+<!-- <script>
+var swiper = new Swiper('.swiper-container');
+</script> -->
+<!--<script type="text/javascript" src="js/index.js" ></script>-->
+
+</html>

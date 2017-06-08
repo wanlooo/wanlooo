@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <link rel="stylesheet" href="css/details.css" />
+    <link rel="stylesheet" href="css/default.css" />
+    <link rel="stylesheet" href="css/productDetail.css" />
+    <link rel="stylesheet" href="css/loading.css" />
+    <!-- <link rel="stylesheet" href="css/ProgressBarWars.css" /> -->
+    <script type="text/javascript" src="js/jquery-1.12.4.min.js" ></script>
+    <script type="text/javascript" src="js/mask-layer.js"></script>
+	<script src="js/angular.min.js"></script>
+	<script type="text/javascript" src="angularjs/common/miaoshaPublic.js"></script>
+	<script type="text/javascript" src="angularjs/app.js"></script>
+	<script type="text/javascript" src="angularjs/service/miaoshaService.js"></script>
+	<script type="text/javascript" src="angularjs/controller/miaoshaDetailCtrl.js"></script>
+    <!-- <script src="js/ProgressBarWars.js"></script> -->
+    <!-- <script src="/gg_bd_ad_720x90-2.js" type="text/javascript"></script> -->
+   <!--  <script type="text/javascript" src="js/count_down.js" ></script> -->
+    
+</head>
+<body ng-app="app"  ng-controller="miaoshaDetailCtrl" ng-init="miaoshaDetail.init()">
+<!-- 	<div ng-class="{true:'loading-show',false:'loading-hide'}[loading]"><div class="loading-pic"></div></div> -->
+	<div class="loading-hide"><div class="loading-pic"></div></div> <!-- ng-show="loading" -->
+	<div id="hearder">
+		<ul class="b_q">
+			<li></li>
+			<li ><a ng-click='selectTab(0)'>商品</a></li>
+			<li ><a ng-click='selectTab(1)'>详情</a></li>
+		</ul>
+		<ul class="x_h">
+			<li ng-style="tab0"></li>
+			<li ng-style="tab1"></li>
+			<li></li>
+		</ul>
+	</div>
+<div  id="product" ng-show="tabShow==0">	
+	<div id="photo">
+		<a href=""><img  ng-src="{{active.product.images[0].url}}"/></a>
+	</div>
+	<div id="content">
+		<div class="introduce">
+			<div class="titlle">
+				<span ng-bind="active.product.name"></span>
+			</div>
+			<div style="height: 0.6rem; ">
+				<div class="star fl">
+					<ul>
+					 	<li  ng-repeat="s in getcountlist(active.star)"><img src="img/st.jpg"/></li>
+					 	<!-- <li><img src="img/st.jpg"/></li>
+					 	<li><img src="img/st.jpg"/></li>
+					 	<li><img src="img/st.jpg"/></li> -->
+					 	<li ng-repeat="s1 in getrestcountlist(active.star)"><img src="img/empxx.jpg"/></li>
+					 </ul>
+					 
+				</div>
+				<div class="timebox" id="timebox">
+                    <div class="time"><samp></samp><font class="hour">00</font><span>∶</span><font class="minute">00</font><span>∶</span><font class="second">00</font></div>
+                </div>
+			</div>
+			<div class="text">
+				<span ng-bind="active.product.description"></span>
+			</div>
+		</div>
+		<div class="price">
+			<div class="pri">
+				当前价格：<span ng-bind="'￥'+active.activePrice"></span>
+			</div>
+			<div class="original">
+				原价格：<span ng-bind="'￥'+active.originalPrice"></span>
+			</div>
+		</div>
+		<div class="magnitude"> 
+			<!-- <div class="fl participate" >
+				<div ng-cloak>
+					{{active.joinCount}}<br />
+					<span>已购数量</span>
+				</div>
+			</div> -->
+			<div class="fl  remaining">
+				<div ng-cloak>
+					{{active.quantity-active.joinCount}}<br />
+					<span>剩余数量</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	<div id="detail" ng-show="tabShow==1">
+		<div class="content-titlle">
+				商品介绍
+		</div>
+		<div class="wrap-1">
+			<div class="content-introduce">
+				天啊！原来在洛杉矶还有性价比这么高的房子可以让你摘果子，洛杉矶的阳光沙滩
+			</div>
+			<div class="content-images">
+				<img src="img/Item_show-s1.png"/>
+			</div>
+			<div class="content-introduce">
+				洛杉矶的阳光沙滩.常年20度左右不穿毛衣不下雨的天气，让他成为了度假者天堂
+			</div>
+			<div class="content-images">
+				<img src="img/Item_show-s2.png"/>
+			</div>
+		</div>
+	</div>
+    <div style="height: :1rem">&nbsp;</div>
+	<div id="footer" style="position: fixed;bottom: 0;width:100%">
+		<a ng-show="miaoshaPeriod.status == 1" ng-click="miaoshaDetail.toMiaoshaOrder()" >购买</a>
+		<a ng-show="miaoshaPeriod.status != 1" ng-click="miaoshaDetail.toMiaoshaOrder()" style="background-color:#A3ABB8;">购买</a><!-- href="javascript:void(0)" --> 
+	</div>
+	
+	<script>
+		$(function(){
+			$(".x_h li").eq(0).show().siblings().hide()	;	
+			$(".prompt").hide();
+			$(".gra-b-l").hover(function(){
+				$(".prompt").show();
+			},function(){
+				$(".prompt").hide();
+			})
+		})
+	</script>
+	<script type="text/javascript">
+    	(function (doc, win) {
+			var docEl = doc.documentElement,
+			resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+			recalc = function () {
+			var clientWidth = docEl.clientWidth;
+			if (!clientWidth) return;
+			docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+			};
+			if (!doc.addEventListener) return;
+			win.addEventListener(resizeEvt, recalc, false);
+			doc.addEventListener('DOMContentLoaded', recalc, false);
+			})(document, window);
+    </script>
+</body>
+</html>

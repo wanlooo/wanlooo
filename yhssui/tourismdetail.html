@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="css/lc_switch.css" />
+		<link rel="stylesheet" href="css/swiper-3.3.1.min.css" /> 
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/Item_show.css" />
+		<link rel="stylesheet" type="text/css" href="pikaday/css/pikaday.css">
+
+		<!-- <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" /> -->
+		<script type="text/javascript" src="js/jquery-1.12.4.min.js" ></script>
+		<!-- <script type="text/javascript" src="js/bootstrap/bootstrap.min.js" ></script>
+		<script type="text/javascript" src="js/bootstrap/bootstrap-datepicker.js" ></script>
+		
+		<script type="text/javascript" src="js/bootstrap/bootstrap-datepicker.zh-CN.js" ></script> -->
+		<script src="js/lc_switch.js" type="text/javascript"></script>
+		<script type="text/javascript" src="js/swiper-3.3.1.jquery.min.js" ></script>
+		<script type="text/javascript" src="pikaday/pikaday.js"></script>
+		<link href="js\layer\skin\default\layer.css" rel="stylesheet"/>
+		<script type="text/javascript" src="js/layer/layer.js"></script>
+		<!-- <script type="text/javascript" src="js/bootstrap-datetimepicker.min.js" ></script> -->
+		<script type="text/javascript" src="js/general.js"></script>
+		<script type="text/javascript" src="js/moment/moment.js"></script>
+	</head>
+	<body>
+		<div id="header">
+			<div class="swiper-container">
+            	<div class="swiper-wrapper">
+            		<div class="swiper-slide"><img style="width: 100%;height: 5rem;" src="img/shop_10.jpg" /></div>
+            		<div class="swiper-slide"><img style="width: 100%;height: 5rem;" src="img/shop_13.jpg" /></div>
+            	</div>
+            	<div class="swiper-pagination"></div>
+            </div>
+		</div>
+		<!-- <div class="top ">
+			<div class="tp-l">
+				<div class="input-group date-picker input-daterange" data-date-format="yyyy-mm-dd">
+	    			<div>
+	    				<span class="input-group-addon">入住日期</span>
+	    				
+	    				<input type="text" id="dateFrom1"  class="form-control" />
+	    			</div>
+	    			<div >
+	    				<span class="input-group-addon">离开日期</span>
+		    			<input type="text" id="dateTo2"  class="form-control" />
+		    			
+		    		</div>
+				</div>
+			</div>
+			<div class="hotelib">
+		    				<div class="hotelib-tit clearfix">
+		    					<p>酒店库存详情</p><a><span class="down"></span></a>
+		    				</div>
+		    				<div class="hotelib-detail">
+		    					
+		    				</div>
+		    			</div>
+			<div class="tp-r">
+					<div class="tp-r-one">单人间
+						<select style="width:1.5rem;" class="singleroomselect">
+						<option value="0">0</option>
+						</select>
+					</div>
+					<div class="tp-r-two">双人间
+						<select style="width:1.5rem;" class="doubleroomselect">
+						<option value="0">0</option>
+						</select>
+					</div>
+				</div> 
+		</div> -->
+		<div class="top2 " style="height: 1.75rem;border-bottom: 1px solid #EDECEE;border-top: 1px solid #EDECEE;">
+			<div class="t-l">
+				<div class="t-l-line">
+					<label>入住：</label><input  type="text" id="dateFrom" readonly="readonly" class="form-control" />
+				</div>
+				<div class="t-l-line">
+					<label>离开：</label><input  type="text" id="dateTo" readonly="readonly" class="form-control" />
+				</div>
+			</div>
+			<div class="t-r">
+				<div class="tp-r-one">
+					<span style="font-weight: 700;">单人间数：</span>
+						<select style="width:1rem;border: none;" class="singleroomselect">
+						<option value="0">0</option>
+						</select>
+				</div>
+				<div class="tp-r-two">
+					<span style="font-weight: 700;">双人间数：</span>
+						<select style="width:1rem;border: none;" class="doubleroomselect">
+						<option value="0">0</option>
+						</select>
+				</div>
+			</div>
+		</div>
+		<div id="content">
+			<div class="content-titlle">
+					产品介绍
+			</div>
+			<div class="wrap-1">
+				<div class="content-introduce">
+					天啊！原来在洛杉矶还有性价比这么高的房子可以让你摘果子，洛杉矶的阳光沙滩
+				</div>
+				<div class="content-images">
+					<img src="img/Item_show-s1.png"/>
+				</div>
+				<div class="content-introduce">
+					洛杉矶的阳光沙滩.常年20度左右不穿毛衣不下雨的天气，让他成为了度假者天堂
+				</div>
+				<div class="content-images">
+					<img src="img/Item_show-s2.png"/>
+				</div>
+			</div>
+		</div>
+		
+		<div id="bottom">
+			<div class="bottom-l">价格:<span >￥<span class="totalsum">0</span> </span></div>
+			<div class="bottom-r">
+				<a href="javascript:void(0);" class="btn">即时预订</a>
+			</div>
+		</div>
+		<script type="text/javascript">
+    		(function (doc, win) {
+				var docEl = doc.documentElement,
+				resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+				recalc = function () {
+				var clientWidth = docEl.clientWidth;
+				if (!clientWidth) return;
+					docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+				};
+				
+				
+				if (!doc.addEventListener) return;
+				win.addEventListener(resizeEvt, recalc, false);
+				doc.addEventListener('DOMContentLoaded', recalc, false);
+			})(document, window);
+
+			var hoteldate={};
+			var hotelinfos={};
+			$(function(){ 
+				$("#dateFrom").val(moment().format('YYYY-MM-DD'));
+				$("#dateTo").val(moment().add(1, 'd').format('YYYY-MM-DD'));
+				$.ajax({
+					type:"get",
+					url:weburl+"/hotelTrip/getDetail/"+request("id"),
+					dataType:"json",
+					contentType:'application/json;charset=utf-8',
+					success:function(data){
+						//console.log(JSON.stringify(data));
+						hoteldate=data;
+						if(data.success==true){
+							var img=data.data.hotel.images.list;//数组：【{}，{}，{}】
+							var headerhtml='<div class="swiper-container"><div class="swiper-wrapper">';
+							$.each(img,function(i,image){
+								headerhtml +='<div class="swiper-slide"><img style="width: 100%;height: 5rem;" src="'+image.imageUrl+'" /></div>';
+							})
+							headerhtml +='</div><div class="swiper-pagination"></div></div></div><div class="hd-price">￥'+data.data.hotelPrice[0].price+'</div><div class="titlle">';
+							headerhtml +='<div style="font-size: 0.42rem; color: 3c3f58;">'+data.data.title+'</div><div class="tras">'+data.data.desc+'</div></div>';
+							$("#header").append(headerhtml);
+							//初始化日间区间
+							var mindate=moment(data.data.start).isBefore(moment())?moment().format("YYYY-MM-DD"):data.data.start;
+							var maxdate=data.data.end;
+							new Pikaday({
+						        field: document.getElementById('dateFrom'),
+						        firstDay: 1,
+						        minDate: new Date(mindate),
+						        maxDate: new Date(maxdate),
+						        yearRange: [2016,2030]
+						    });
+							new Pikaday({
+						        field: document.getElementById('dateTo'),
+						        firstDay: 1,
+						        minDate: new Date(mindate),
+						        maxDate: new Date(maxdate),
+						        yearRange: [2016,2030]
+						    });
+						    //end
+							var swiper = new Swiper('.swiper-container', {
+    							pagination: '.swiper-pagination',
+    							nextButton: '.swiper-button-next',
+    							prevButton: '.swiper-button-prev',
+							        slidesPerView: 'auto',
+							        centeredSlides: true,
+							        paginationClickable: true,
+							        spaceBetween: 30
+							         });
+						}
+							
+						
+					}
+				})
+				
+				$("#dateFrom").change(function(){
+					datechange();
+				})
+				$("#dateTo").change(function(){
+					datechange();
+				})
+				$("select").change(function(){
+					var totalSum=countChange();//总价格的返回值
+					$(".totalsum").text(totalSum);
+				})
+				var swiper = new Swiper('.swiper-container', {
+    							pagination: '.swiper-pagination',
+    							nextButton: '.swiper-button-next',
+    							prevButton: '.swiper-button-prev',
+							        slidesPerView: 'auto',
+							        centeredSlides: true,
+							        paginationClickable: true,
+							        spaceBetween: 30
+				});
+				$(".btn").click(function(){
+					if($(".totalsum").text()=='0'){
+						alert('请选择房间数量');
+						return;
+					}
+					var selectInfo ={
+						datefrom:$("#dateFrom").val(),
+						dateto:$("#dateTo").val(),
+						singlecount:$(".singleroomselect").val(),
+						doublecount:$(".doubleroomselect").val(),
+						totalsum:$(".totalsum").text()
+					}
+					window.localStorage.selectInfo = JSON.stringify(selectInfo);
+					window.localStorage.hotelInfos = JSON.stringify(hoteldate.data);
+					window.location.href = 'tourismorder.html' ;
+				})
+				function datechange(){   //选择日期时，变更库存详情，变更可选单人间和双人间数
+					var datefrom=$("#dateFrom").val();
+					var dateto=$("#dateTo").val();
+					
+
+					if(datefrom==""&&dateto!=""){
+						layer.msg("请选择入住日期");
+						return;
+					}
+					if(datefrom=="" || dateto==""){
+						return ;
+					}else if(datefrom>dateto){
+						layer.msg("离开日期小于入住日期了，请重选日期");
+						return;
+					}else{
+						//将入住和离开日期区间转化为数组。
+						var datespans = dataScope(datefrom, dateto);
+						// console.log(dataScope(datefrom, dateto));
+						// var datespans=["2017-04-01","2017-04-02"];
+						//console.info(datespans);
+                	
+						var hotelstocks=hoteldate.data.hotelStock;
+						$.each(datespans,function(i,datespan){
+							$.each(hotelstocks,function(index,hotelstock){
+								var hotel = {};
+								if(hotelstock.date==datespan){
+									hotel.singleRoom=hotelstock.singleRoom;
+									hotel.doubleRoom=hotelstock.doubleRoom;
+									hotelinfos[datespan]=hotel;
+								}
+							});
+						})
+						var hotelPrice = hoteldate.data.hotelPrice;
+						$.each(hotelinfos,function(key,value){
+							$.each(hotelPrice,function(i,price){
+								if(key>=price.start&&key<=price.end&&price.type=='DOUBLEROOM'){
+									value.doubleRoomPrice = price.price ;
+								}
+								if(key>=price.start&&key<=price.end&&price.type=='SINGLEROOM'){
+									value.singleRoomPrice = price.price ;
+								}
+							});
+						});
+						//console.log(JSON.stringify(hotelinfos));
+					}
+					
+					// showMsg(datespans);
+					showCount(datespans);
+				}
+				function showMsg(datespans){//显示库存详情
+
+					var stocks=hoteldate.data.hotelStock;
+					var showmsg={};//拼出需要的库存信息，用于显示
+					var flag=false;
+						$.each(datespans,function(i,datespan){		
+							$.each(stocks,function(index,hotelstock){			
+								var hotel = {};
+								if(hotelstock.date==datespan){
+									hotel.singleRoom=hotelstock.singleRoom;
+									hotel.doubleRoom=hotelstock.doubleRoom;
+									showmsg[datespan]=hotel;
+									flag=true;
+								}else{
+									return true;
+								}
+							});
+							if(flag){
+								return true; 
+							}else{
+
+								showmsg[datespan]={"singleRoom":"0","doubleRoom":"0"};	
+							}
+						})
+					//console.log(JSON.stringify(showmsg));
+					//显示库存详情头
+
+					showInfoTitle();
+		        	//拼库存详情体
+		        	showInfoBody(showmsg);	
+				}
+				function showCount(datespans){//单人间最小值，双人间最小值
+					var minsingleRoom;
+					var mindoubleRoom;
+					var returnFlag = false;
+
+					$.each(datespans,function(i,datespan){
+
+						if(!hotelinfos[datespan]){
+							returnFlag = true;
+							return false;
+						}
+							if(minsingleRoom==undefined) {
+								minsingleRoom=hotelinfos[datespan].singleRoom;
+
+							}else if(hotelinfos[datespan].singleRoom<minsingleRoom){
+								minsingleRoom =hotelinfos[datespan].singleRoom
+							}
+							if(mindoubleRoom==undefined) {
+								mindoubleRoom=hotelinfos[datespan].doubleRoom;
+
+							}else if(hotelinfos[datespan].doubleRoom<mindoubleRoom){
+								mindoubleRoom =hotelinfos[datespan].doubleRoom
+							}
+					})
+					if(returnFlag){
+							return;
+						}
+			
+					var shtml='<option value ="0">0</option>';
+					for(i=1;i<=minsingleRoom;i++){
+						shtml +='<option value ="'+i+'">'+i+'</option>';
+					}
+					$(".singleroomselect").html(shtml);
+						
+					var dhtml='<option value ="0">0</option>';
+					for(i=1;i<=mindoubleRoom;i++){	
+						dhtml +='<option value ="'+i+'">'+i+'</option>';
+					}
+					$(".doubleroomselect").html(dhtml);
+				}
+			})
+
+			function countChange(){	//根据选择的单双人间数计算总价格
+					var singlecount=$(".singleroomselect").val();
+					var doublecount=$(".doubleroomselect").val();
+					//计算总价格
+					var sum=0;
+					//console.log(JSON.stringify(hotelinfos));
+					$.each(hotelinfos,function(key,value){
+						var sprice=value.singleRoomPrice;
+						var dprice=value.doubleRoomPrice;
+						sum+=singlecount*sprice+doublecount*dprice;
+					})
+					return sum;
+				}
+			function showInfoTitle(){
+					var flag=$(".hotelib").css("display");
+
+					if (flag=="none") {
+		            	$(".hotelib").show();
+		        	} 
+		        	//console.log($(".hotelib-tit").find("span"));
+		        	$(".hotelib-tit").find("span").click(function() {
+		        		//console.log($(".hotelib-tit").find("span"));
+			        if ($(this).hasClass("down")) {
+			        
+			            $(this).removeClass("down");
+			            $(this).addClass("up");
+			            $(this).parent().parent(".hotelib-tit").siblings(".hotelib-detail").show();
+			        } else {
+			        	
+			            $(this).removeClass("up");
+			            $(this).addClass("down");
+			            $(this).parent().parent(".hotelib-tit").siblings(".hotelib-detail").hide();
+			        };
+    		});
+}
+function showInfoBody(showmsg){
+	var html="<ul>";
+    $.each(showmsg,function(key,value){
+    	html+='<li><span class="hotelib-dates">'+key+'</span><span>单人间:</span><span class="hotelib-single">'+value.singleRoom+'</span><span>双人间:</span><span class="hotelib-double">'+value.doubleRoom+'</span></li>';
+    				})
+    	html+="</ul>";
+    	$(".hotelib-detail").html(html);
+}
+			function dataScope(value1, value2) {
+				var ret=[];
+				if(value1>=value2){
+					alert("输入日期不正确！");
+					return ret;
+				}
+				while(moment(value1).isBefore(value2)){
+					ret.push(value1);
+					value1 = moment(value1).add(1,'d').format("YYYY-MM-DD");
+				}
+				return ret;
+            }
+	// 获取url参数
+	function request(param){
+		var url = location.href;  
+		var paraString = url.substring(url.indexOf("?")+1,url.length).split("&");  
+		var paraObj = {}  
+		for (i=0; j=paraString[i]; i++){  
+			paraObj[j.substring(0,j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=")+1,j.length);  
+		}  
+		var returnValue = paraObj[param.toLowerCase()];  
+		if(typeof(returnValue)=="undefined"){  
+			return "";  
+		}else{  
+			return returnValue; 
+		}
+	};
+    </script>
+		<script>
+		$(document).ready(function(e) {
+			$('input').lc_switch();
+			// triggered each time a field changes status
+			$('body').delegate('.lcs_check', 'lcs-statuschange', function() {
+				var status = ($(this).is(':checked')) ? 'checked' : 'unchecked';
+				console.log('field changed status: '+ status );
+			});
+
+			// triggered each time a field is checked
+			$('body').delegate('.lcs_check', 'lcs-on', function() {
+				console.log('field is checked');
+			});
+			
+			
+			// triggered each time a is unchecked
+			$('body').delegate('.lcs_check', 'lcs-off', function() {
+				console.log('field is unchecked');
+			});
+		});
+</script>
+<script>
+	$(function(){
+		$(".choose").click(function(){
+			
+			if( $(".choose-b").css("display") == 'none'){
+				$(".choose-b").show();
+			}
+			else{
+				$(".choose-b").hide();
+			}
+		})
+		$(".choose-1").click(function(){
+			
+			if( $(".choose-b-1").css("display") == 'none'){
+				$(".choose-b-1").show();
+			}
+			else{
+				$(".choose-b-1").hide();
+			}
+		})
+		$(".choose-2").click(function(){
+			
+			if( $(".choose-b-2").css("display") == 'none'){
+				$(".choose-b-2").show();
+			}
+			else{
+				$(".choose-b-2").hide();
+			}
+		})
+		$(".choose-3").click(function(){
+			
+			if( $(".choose-b-3").css("display") == 'none'){
+				$(".choose-b-3").show();
+			}
+			else{
+				$(".choose-b-3").hide();
+			}
+		})
+		$(".choose-4").click(function(){
+			
+			if( $(".choose-b-4").css("display") == 'none'){
+				$(".choose-b-4").show();
+			}
+			else{
+				$(".choose-b-4").hide();
+			}
+		})
+	})
+</script>
+	</body>
+</html>

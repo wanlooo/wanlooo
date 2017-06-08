@@ -1,0 +1,78 @@
+	body{
+    		background-color: #eee;
+    	}
+
+    	.container{
+    		padding: 15px;
+		    margin-right: auto;
+		    margin-left: auto;
+    		background-color: #fff;
+    	}
+    	.ordertype{
+    		padding-bottom: 5px;
+    	}
+	    .container-goods{
+		    margin:8px auto;
+		    background-color: #fff;
+    	}
+    	.title-goods{
+    		padding: 8px 15px 8px 8px;
+		    margin-right: auto;
+		    margin-left: auto;
+    		background-color: #fff;
+		}
+		.title-goods-bb{border-bottom: 1px solid #eee;}
+		.title-goods-ba{border-bottom: 1px solid #eee;margin-bottom:10px;}
+		.textRed{color: #ef4343;}
+		.content-goods{
+			background-color: #eee;
+			padding: 15px;
+			padding-right: 20px;
+			margin-bottom: 3px;
+		}
+		.btn-mystyle{
+			color: #ef4343;
+			font-weight: 600;
+		    background-color: #fff;
+		    border-color: #ef4343;
+		}
+		.badge{
+			background-color: #ef4343;
+		}
+		.center2{
+			 
+		}
+		.text-over{
+			white-space:nowrap; 
+			width:100%; 
+			overflow:hidden; 
+			text-overflow: ellipsis;
+		}
+		.wait-info {
+		    padding: 10px;
+		    margin-right: auto;
+		    margin-left: auto;
+		    height:70px;
+		    background-color: #ef4343;
+		    color: #fff;
+		}
+		.addressbg{
+			width: 25px;height:30px; 
+			margin-top:7px;
+		}
+		.addressbg img{width: 80%;height: 85%;}
+		.order-info{
+			font-size: 13px;
+			line-height: 1rem;
+		}
+	#myTab{
+		width:100%;
+	}
+	#myTab li{
+		width:32%;
+	}
+	.center3{
+		background: url(../img/contact.png) center top no-repeat;
+		background-size: 20px 20px;
+	}
+			

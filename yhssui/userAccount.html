@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>个人信息</title>
+<link href="css/personal.css" rel="stylesheet"/>
+<script language="javascript" src="js/jquery-1.12.4.min.js"></script>
+<script src="js/angular.min.js"></script>
+<script type="text/javascript" src="angularjs/app.js"></script>
+<script type="text/javascript" src="angularjs/controller/userInfoCtrl.js"></script>
+</head>
+<body ng-app="app"  ng-controller="userInfoCtrl" ng-init='userInfo()'> 
+<div class="first account-first">
+    <!-- <div class="" onclick="window.location.href='userAccount.html'">
+       <a class="">头像</a>
+       <img class="" src="img/txtwo.jpg" />
+       <span class="">></span>
+    </div> -->
+    <!-- <hr style="height:2px;border:none;border-top:8px solid #f0f0f0;"/> -->
+    <div class="bb">用户名<span class="account-r fr" ng-bind='user.userName'></span></div>
+    <div class="bb">姓名<span class="account-r fr" ng-bind='user.name'></span></div>
+    <div class="bb">性别<span class="account-r fr" ng-show='user.gender=="man"'>男</span><span class="account-r fr" ng-show='user.gender!="man"'>女&nbsp;</span></div>
+    <div class="bb">所在学校<span class="account-r fr" ng-bind='user.school.schoolname'></span></div>
+    <div class="bb">所学专业<span class="account-r fr" ng-bind='user.school.profession'></span></div>
+   <!--  <div onclick="window.location.href=''" class="bb">出生日期<span class="account-r fr">></span></div> -->
+</div>
+</body>
+</html>

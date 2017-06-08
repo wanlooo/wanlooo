@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="css/global.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="css/x_phone.css">
+<script type="text/javascript" src="js/adaption.js"></script>
+<script src="js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="js/mask-layer.js"></script>
+<script type="text/javascript" src="js/moment/moment.min.js"></script>
+<script src="js/angular.min.js"></script>
+<script type="text/javascript" src="angularjs/app.js"></script>
+<script type="text/javascript" src="angularjs/service/tuangouService.js"></script>
+<script type="text/javascript" src="angularjs/controller/tuangouCtrl.js"></script>
+
+<title>团购列表页</title>
+</head>
+<body ng-app="app" ng-controller="tuangouCtrl" >
+<!--head-->
+<div class="head">
+    <div class="title tc">团购</div>
+    <div class="backfr">
+        <a href="javascript:history.go(-1)">
+            <span>我的商品</span>
+        </a>
+    </div>
+</div>
+<!--head end-->
+    
+<!--body-->
+<div class="body">
+	<!--groupon-->
+	<div class="groupon">
+    	<!--tabclick-->
+    	<div class="tabclick">
+        	<a ng-class="{'active':selectIndex==0}" ng-click='changeStatus(0)'>砍价中</a><a ng-class="{'active':selectIndex==1}" ng-click='changeStatus(1)'>销售中</a><a ng-class="{'active':selectIndex==2}" ng-click='changeStatus(2)'>即将上线</a>
+        </div>
+        <!--tabclick end-->
+        
+        <!--timebox-->
+        <div id="timebox" class="timebox">
+            <!-- <div ng-bind-html="countDown"></div> -->
+            <!-- <dy-compile html="{{countDown}}"></dy-compile> -->
+        	<div class="time"><samp>距结束</samp><font class="hour">00</font><span>&nbsp;天&nbsp;</span><font class="hour">00</font><span>∶</span><font class="minute">00</font><span>∶</span><font class="second">00</font></div>
+        </div>
+        <!--timebox end-->
+        
+        <!--itemlist-->
+        <div class="itemlist">
+        	<ul>
+            	<li ng-show='selectTuangouStatus.actives.length > 0' ng-repeat="active in selectTuangouStatus.actives" ng-click="toDetail(active.id)">
+                	<!--itemtop-->
+                    <div class="itemtop">
+                        <img class="itempic" ng-src="{{active.product.images[0].url}}">
+                        <div class="itemstatus">
+                            <div class="productname">{{active.product.name}}</div>
+                            <!--star-->
+                            <div class="star">
+                                <i ng-repeat="i in getcountlist(active.star)"><img src="img/star1.png"></i>
+                                <i ng-repeat="i in getrestcountlist(active.star)"><img src="img/star2.png"></i>
+                            </div>
+                            <!--star end-->
+                            
+                            <!--price-->
+                            <div class="price">
+                            	<span>当前价格：<font>¥{{active.activePrice}}</font></span>
+                                <samp>¥{{active.activePrice}}</samp>
+                            </div>
+                            <!--price end-->
+                            
+                            <!--number-->
+                            <div class="number">
+                            	<span>库存数量：{{active.quantity-active.joinQuantity}} </span>
+                                <!-- <a class="invitefriends" ng-click="showTab()">邀请好友</a> -->
+                            </div>
+                            <!--number end-->
+                        </div>
+                    </div>
+                    <!--itemtop end-->
+                    
+					<!--itembottom-->
+					<div class="itembottom">
+                    	<div class="progress_bar clear">
+                            <div class="pro_bar" ng-repeat="item in active.activeItem">
+                                <small class="progress_bar_title">{{item.stall}}档 <font>¥{{item.price}}</font> </small>
+                                <span class="progress_bar_inner" ng-style="selectTuangouStatus.actives[$parent.$index].activeItem[$index].innerStyle"><font ng-show="item.inner==1" ng-style="selectTuangouStatus.actives[$parent.$index].activeItem[$index].fontStyle">还需{{item.restCount}}刀</font></span>
+                                <span class="progress_bar_quan"><font ng-style="selectTuangouStatus.actives[$parent.$index].activeItem[$index].quanStyle">{{item.stall}}</font></span>
+                            </div>
+                            <a ng-show='selectTuangouStatus.index==0' class="panic_buying" ng-click="toDetail(active.id)">砍价</a>
+                            <a ng-show='selectTuangouStatus.index==1' class="panic_buying" ng-click="toDetail(active.id)">抢购</a>
+                            <a ng-show='selectTuangouStatus.index==2' class="panic_buying" ng-click="toDetail(active.id)">即将开始</a>
+                        </div>
+                    </div>
+                    <!--itembottom end-->
+            	</li>
+                <li ng-show='selectTuangouStatus.actives.length <= 0'>
+                    <div style="font-size:0.3rem;text-align:center;">
+                        <h3 style="line-height:2rem;">无对应团购活动</h3>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--groupon-->
+</div>
+<!--body end-->
+<style type="text/css">
+    .domtext {
+        display: none;color: #fff; font-size: 1.7em; font-family: "微软雅黑";padding-left: 1.5rem;
+    }
+    p {
+    display: block;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+
+</style>
+<div id="domMessage" class="domtext" style="margin-left: -1.3rem;margin-top: -5rem;">
+    <img src="images/jiantou.gif" width="60%'" />
+    <div id="domte">
+        <p>请点击右上角</p>
+        <p>点击【发送给朋友】</p>
+        <p>或【分享到朋友圈】</p>
+    </div>
+</div>
+</body>
+
+</html>

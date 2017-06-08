@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>编辑地址</title>
+<link href="css/eaddress.css" rel="stylesheet"/>
+<script src="js/angular.min.js"></script>
+<script type="text/javascript" src="angularjs/app.js"></script>
+<script type="text/javascript" src="angularjs/common/nextPage.js"></script>
+<script type="text/javascript" src="angularjs/controller/addressCtrl.js"></script>
+<script type="text/javascript" src="angularjs/service/addressService.js"></script>
+</head>
+
+<body ng-app="app" ng-controller="addressCtrl">
+<div class="content">
+<div>
+	<div style="float:right;"><a class="address" ng-click="proAddress.queryUser()">选联系人</a></div>
+	<div>收货人员： <input type="text" /></div>
+    <div>联系方式： <input type="text" /></div>
+    <div>所在地区： <input type="text" /></div>
+    <div>详细地址： <input type="text" /></div>
+</div>
+<div>Personal Station</div>
+<div>
+	设置轻松购
+</div>
+</div>
+<div class="address"><a class='save' ng-click="proAddress.save()"><strong>保存</strong></a></div>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/Item_show.css" />
+		<script type="text/javascript" src="js/jquery-3.1.0.min.js" ></script>
+		<script type="text/javascript">
+    	(function (doc, win) {
+			var docEl = doc.documentElement,
+			resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+			recalc = function () {
+			var clientWidth = docEl.clientWidth;
+			if (!clientWidth) return;
+			docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+			};
+			
+			
+			if (!doc.addEventListener) return;
+			win.addEventListener(resizeEvt, recalc, false);
+			doc.addEventListener('DOMContentLoaded', recalc, false);
+			})(document, window);
+    </script>
+	</head>
+	<body>
+		<div class="layer">
+			<div class="layer-content">
+				<div class="layer-content-1">
+					<div class="layer-content-img">
+						<img src="img/zc.jpg"/>
+					</div>
+					<div class="layer-content-z">
+						<p>紧凑车型(朗逸/克鲁兹等)</p>
+						<div class="pric">
+							80.00元起
+						</div>
+					</div>
+					<div class="tick">
+						<div class="choose">
+							
+						</div>
+						<div class="choose-b">
+								<img src="img/choose.jpg"/>
+							</div>
+					</div>
+				</div>
+				<div class="layer-content-1">
+					<div class="layer-content-img">
+						<img src="img/yhzc.jpg"/>
+					</div>
+					<div class="layer-content-z">
+						<p>紧凑车型(朗逸/克鲁兹等)</p>
+						<div class="pric">
+							80.00元起
+						</div>
+					</div>
+					<div class="tick">
+						<div class="choose-1">
+							
+						</div>
+						<div class="choose-b-1">
+								<img src="img/choose.jpg"/>
+							</div>
+					</div>
+				</div>
+				<div class="layer-content-1">
+					<div class="layer-content-img">
+						<img src="img/zc.jpg"/>
+					</div>
+					<div class="layer-content-z">
+						<p>紧凑车型(朗逸/克鲁兹等)</p>
+						<div class="pric">
+							80.00元起
+						</div>
+					</div>
+					<div class="tick">
+						<div class="choose-2">
+							
+						</div>
+						<div class="choose-b-2">
+								<img src="img/choose.jpg"/>
+							</div>
+					</div>
+				</div>
+				<div class="layer-content-1">
+					<div class="layer-content-img">
+						<img src="img/yhzc.jpg">
+					</div>
+					<div class="layer-content-z">
+						<p>紧凑车型(朗逸/克鲁兹等)</p>
+						<div class="pric">
+							80.00元起
+						</div>
+					</div>
+					<div class="tick">
+						<div class="choose-3">
+							
+						</div>
+						<div class="choose-b-3">
+								<img src="img/choose.jpg"/>
+							</div>
+					</div>
+				</div>
+				<div class="layer-content-1">
+					<div class="layer-content-img">
+						<img src="img/zc.jpg"/>
+					</div>
+					<div class="layer-content-z">
+						<p>紧凑车型(朗逸/克鲁兹等)</p>
+						<div class="pric">
+							80.00元起
+						</div>
+					</div>
+					<div class="tick">
+						<div class="choose-4">
+							
+						</div>
+						<div class="choose-b-4">
+								<img src="img/choose.jpg"/>
+							</div>
+					</div>
+				</div>
+				<!--<div class="close">
+					X
+				</div>-->
+			</div>
+		</div>
+		<script>
+		$(".choose").click(function(){
+			
+			if( $(".choose-b").css("display") == 'none'){
+				$(".choose-b").show();
+			}
+			else{
+				$(".choose-b").hide();
+			}
+		})
+		$(".choose-1").click(function(){
+			
+			if( $(".choose-b-1").css("display") == 'none'){
+				$(".choose-b-1").show();
+			}
+			else{
+				$(".choose-b-1").hide();
+			}
+		})
+		$(".choose-2").click(function(){
+			
+			if( $(".choose-b-2").css("display") == 'none'){
+				$(".choose-b-2").show();
+			}
+			else{
+				$(".choose-b-2").hide();
+			}
+		})
+		$(".choose-3").click(function(){
+			
+			if( $(".choose-b-3").css("display") == 'none'){
+				$(".choose-b-3").show();
+			}
+			else{
+				$(".choose-b-3").hide();
+			}
+		})
+		$(".choose-4").click(function(){
+			
+			if( $(".choose-b-4").css("display") == 'none'){
+				$(".choose-b-4").show();
+			}
+			else{
+				$(".choose-b-4").hide();
+			}
+		})
+		</script>
+	</body>
+</html>

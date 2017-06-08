@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <link rel="stylesheet" href="css/details.css" />
+    <link rel="stylesheet" href="css/default.css" />
+    <link rel="stylesheet" href="css/ProgressBarWars.css" />
+    <script type="text/javascript" src="js/jquery-1.12.4.min.js" ></script>
+    <script src="js/ProgressBarWars.js"></script>
+    <!-- <script src="/gg_bd_ad_720x90-2.js" type="text/javascript"></script> -->
+   <!--  <script type="text/javascript" src="js/count_down.js" ></script> -->
+    <script type="text/javascript">
+    	(function (doc, win) {
+			var docEl = doc.documentElement,
+			resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+			recalc = function () {
+			var clientWidth = docEl.clientWidth;
+			if (!clientWidth) return;
+			docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+			};
+			
+			
+			if (!doc.addEventListener) return;
+			win.addEventListener(resizeEvt, recalc, false);
+			doc.addEventListener('DOMContentLoaded', recalc, false);
+			})(document, window);
+    </script>
+</head>
+<body>
+	<div id="hearder">
+		
+		<ul class="b_q">
+			<li></li>
+			<li ><a href="">商品</a></li>
+			<li ><a href="">详情</a></li>
+			<li ><a href="">评价</a></li>
+		</ul>
+		<ul class="x_h">
+			<li style="margin-left: 0px;"></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+	<div id="photo">
+		<a href=""><img src="img/photo.jpg"/></a>
+	</div>
+	<div id="content">
+		<div class="introduce">
+			<div class="titlle">
+				色彩艳丽的口红眉笔
+			</div>
+			<div style="height: 0.6rem; ">
+				<div class="star fl">
+					<ul>
+					 	<li><img src="img/st.jpg"/></li>
+					 	<li><img src="img/st.jpg"/></li>
+					 	<li><img src="img/st.jpg"/></li>
+					 	<li><img src="img/st.jpg"/></li>
+					 	<li><img src="img/empxx.jpg"/></li>
+					 </ul>
+					 
+				</div>
+					
+				<!--<div class="time fr">距结束  
+					<span class="num " id="num1">22</span><span class="colon">:</span>
+					<span class="num " id="num2">22</span><span class="colon">:</span>
+					<span class="num " id="num3">22</span>
+				</div>-->
+				<div class="timebox">
+                    <div class="time"><samp>距结束</samp><font class="hour">00</font><span>∶</span><font class="minute">22</font><span>∶</span><font class="second">53</font></div>
+                </div>
+			</div>
+			<div class="text">
+				MUSE冰淇淋MUSE冰淇淋MUSE冰淇淋MUSE冰淇淋MUSE冰淇淋MUSE冰淇淋MUSE冰淇
+			</div>
+		</div>
+		<div class="price">
+			<div class="pri">
+				当前价格：<span>￥160.00</span>
+			</div>
+			<div class="original">
+				原价格：<span>￥257.00</span>
+			</div>
+		</div>
+		<div class="magnitude"> 
+			<div class="fl participate" >
+				<div>
+					200人<br />
+					<span>参与人次</span>
+				</div>
+			</div>
+			
+            
+			<div class="fl  remaining">
+				<div>
+					58人<br />
+					<span>距下一档剩余人次</span>
+				</div>
+			</div>
+		</div>
+		<div class="grade"> 
+			<div class="gra">
+				<div class="gra-l"><span>1档</span>￥124.00</div>
+				<div class="gra-r"><span>2档</span>￥48.00</div>
+				
+				
+			</div>
+			<div class="gra-b">
+				
+				<div class="gra-b-l">
+					<div class="progress" id="obi">
+						<span class="barControl" style="width:30%;">
+							<div class="barContro_space">
+							<span class="obi" style="height: 0.13rem; width: 60%;" id="barobi"></span>
+							</div>
+						</span>
+					</div>
+					<div class="circle" style="background-color: #E4C23C; margin-top: -0.5rem;">1</div>
+				</div>
+				<div class="gra-b-r">
+					<div class="progress" id="obi">
+						<span class="barControl" style="width:30%;">
+							<div class="barContro_space">
+							<span class="obi" style=" height: 0.13rem; width: 60%; background-color: #C3C1C1;" id="barobi"></span>
+							</div>
+						</span>
+					</div>
+					<div class="circle" style="background-color: #EB4A3F; margin-top: -0.5rem;">2</div>
+				</div>
+				<div class="prompt">1档5  60%</div>
+			</div>
+	</div>
+	<div id="footer">
+		<a href="">砍价</a>
+	</div>
+	
+	<script>
+		$(function(){
+			$(".x_h li").eq(0).show().siblings().hide()	;	
+			$(".prompt").hide();
+			$(".gra-b-l").hover(function(){
+				$(".prompt").show();
+			},function(){
+				$(".prompt").hide();
+			})
+		})
+	</script>
+</body>
+</html>

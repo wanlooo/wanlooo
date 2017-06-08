@@ -1,0 +1,192 @@
+{
+	"success":true,
+	"huodongs":[
+		{
+			"typeNo":"001",
+			"typename":"演唱会",
+			"huodong":[
+				{
+					"image":"img/img1.jpg",
+					"amount_min":"160",
+					"amount_max":"480",
+					"title":"FAYE 2010 王菲 演唱会1",
+					"star":4,
+					"date_begin":"2016-12-20",
+					"date_end":"2016-12-27",
+					"address":"北京工人体育馆"
+				},
+				{
+					"image":"img/img1.jpg",
+					"amount_min":"160",
+					"amount_max":"480",
+					"title":"FAYE 2010 王菲 演唱会1",
+					"star":4,
+					"date_begin":"2016-12-20",
+					"date_end":"2016-12-27",
+					"address":"北京工人体育馆"
+				},
+				{
+					"image":"img/img1.jpg",
+					"amount_min":"160",
+					"amount_max":"480",
+					"title":"FAYE 2010 王菲 演唱会1",
+					"star":4,
+					"date_begin":"2016-12-20",
+					"date_end":"2016-12-27",
+					"address":"北京工人体育馆"
+				}
+			]
+		},
+		{
+			"typeNo":"002",
+			"typename":"相声",
+			"huodong":[
+				{
+					"image":"img/img2.jpg",
+					"amount_min":"160",
+					"amount_max":"480",
+					"title":"FAYE 2010 王菲 演唱会1",
+					"star":4,
+					"date_begin":"2016-12-20",
+					"date_end":"2016-12-27",
+					"address":"北京工人体育馆"
+				},
+				{
+					"image":"img/img2.jpg",
+					"amount_min":"160",
+					"amount_max":"480",
+					"title":"FAYE 2010 王菲 演唱会1",
+					"star":4,
+					"date_begin":"2016-12-20",
+					"date_end":"2016-12-27",
+					"address":"北京工人体育馆"
+				},
+				{
+					"image":"img/img2.jpg",
+					"amount_min":"160",
+					"amount_max":"480",
+					"title":"FAYE 2010 王菲 演唱会1",
+					"star":4,
+					"date_begin":"2016-12-20",
+					"date_end":"2016-12-27",
+					"address":"北京工人体育馆"
+				}
+			]
+		},
+		{
+			"typeNo":"003",
+			"typename":"小舞台",
+			"huodong":[
+				{
+					"image":"img/img3.jpg",
+					"amount_min":"160",
+					"amount_max":"480",
+					"title":"FAYE 2010 王菲 演唱会1",
+					"star":4,
+					"date_begin":"2016-12-20",
+					"date_end":"2016-12-27",
+					"address":"北京工人体育馆"
+				},
+				{
+					"image":"img/img3.jpg",
+					"amount_min":"160",
+					"amount_max":"480",
+					"title":"FAYE 2010 王菲 演唱会1",
+					"star":4,
+					"date_begin":"2016-12-20",
+					"date_end":"2016-12-27",
+					"address":"北京工人体育馆"
+				},
+				{
+					"image":"img/img2.jpg",
+					"amount_min":"160",
+					"amount_max":"480",
+					"title":"FAYE 2010 王菲 演唱会1",
+					"star":4,
+					"date_begin":"2016-12-20",
+					"date_end":"2016-12-27",
+					"address":"北京工人体育馆"
+				}
+			]
+		},
+		{
+			"typeNo":"004",
+			"typename":"电子竞技",
+			"huodong":[
+				{
+					"image":"img/img1.jpg",
+					"amount_min":"160",
+					"amount_max":"480",
+					"title":"FAYE 2010 王菲 演唱会1",
+					"star":4,
+					"date_begin":"2016-12-20",
+					"date_end":"2016-12-27",
+					"address":"北京工人体育馆"
+				},
+				{
+					"image":"img/img2.jpg",
+					"amount_min":"160",
+					"amount_max":"480",
+					"title":"FAYE 2010 王菲 演唱会1",
+					"star":4,
+					"date_begin":"2016-12-20",
+					"date_end":"2016-12-27",
+					"address":"北京工人体育馆"
+				}
+			]
+		},
+		{
+			"typeNo":"005",
+			"typename":"话剧",
+			"huodong":[
+				{
+					"image":"img/img1.jpg",
+					"amount_min":"160",
+					"amount_max":"480",
+					"title":"FAYE 2010 王菲 演唱会1",
+					"star":4,
+					"date_begin":"2016-12-20",
+					"date_end":"2016-12-27",
+					"address":"北京工人体育馆"
+				},
+				{
+					"image":"img/img3.jpg",
+					"amount_min":"160",
+					"amount_max":"480",
+					"title":"FAYE 2010 王菲 演唱会1",
+					"star":4,
+					"date_begin":"2016-12-20",
+					"date_end":"2016-12-27",
+					"address":"北京工人体育馆"
+				}
+			]
+		},
+		{
+			"typeNo":"006",
+			"typename":"其他",
+			"huodong":[
+				{
+					"image":"img/img2.jpg",
+					"amount_min":"160",
+					"amount_max":"480",
+					"title":"FAYE 2010 王菲 演唱会1",
+					"star":4,
+					"date_begin":"2016-12-20",
+					"date_end":"2016-12-27",
+					"address":"北京工人体育馆"
+				},
+				{
+					"image":"img/img3.jpg",
+					"amount_min":"160",
+					"amount_max":"480",
+					"title":"FAYE 2010 王菲 演唱会1",
+					"star":4,
+					"date_begin":"2016-12-20",
+					"date_end":"2016-12-27",
+					"address":"北京工人体育馆"
+				}
+			]
+		}
+	]
+	
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>订单列表</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/orderlist.css">
+  <script src="js/angular.min.js"></script>
+  <script type="text/javascript" src="angularjs/app.js"></script>
+  <script type="text/javascript" src="angularjs/controller/orderCtrl.js"></script>
+</head>
+<body ng-app="app"  ng-controller="orderCtrl">
+<div class="container ordertype">
+	<ul id="myTab" class=" nav nav-pills text-center">
+		<li class="center2"><a ng-click='showAll()' class="center3" style="padding: 20px 15px 10px 15px;">全部订单</a></li>
+		<li class="center2"><a ng-click='showWP()' class="center3" style="padding: 20px 15px 10px 15px;">待付款<span class="badge" ng-show='waitPayOrder>0' ng-bind ='waitPayOrder'>2</span></a></li>
+		<!-- <li class="center2"><a href="#" class="center3" style="padding: 20px 15px 10px 15px;">待收货</a></li> -->
+	</ul>
+</div>
+<div class="container-goods" ng-repeat="order in orders">
+	<div class="title-goods">
+		<div class="row">
+			<div class="col-xs-6">万麓商城<span></span></div>
+			<div class="col-xs-6 text-right textRed" ng-show="order.status=='WP'">待付款</div>
+			<div class="col-xs-6 text-right textRed" ng-show="order.status=='WD'">待发货</div>
+		</div>
+	</div>
+	
+	<div class="content-goods" ng-click="toDetail(order.orderNo)">
+		<div class="row">
+			<div class="col-xs-3">
+				<img ng-src="{{order.product.images[0].url}}" alt="order img" width="100%" height="60">
+			</div> 
+			<div class="col-xs-7">
+				<p class="text-over"> <span ng-bind ='order.product.name'></span></p> 
+				<p class="text-over"><span ng-bind ='order.product.description'></span></p> 
+			</div>
+			<div class="col-xs-2">
+				<p class="text-right"> ¥<strong><span ng-bind ='order.amount/order.quantity'></span></strong><br>×<span ng-bind ='order.quantity'>1</span></p>
+			</div>
+		</div>
+	</div>
+	<div class="title-goods title-goods-bb">
+		<div class="row">
+			<div class="col-xs-12 text-right">订单总额：¥<span ng-bind ='order.totalAmount'>100</span></div>
+		</div>
+	</div>
+	<div class="title-goods text-right">
+		<button type="button" class="btn btn-default" ng-show="order.status=='WP'">取消</button>
+		<button type="button" class="btn btn-mystyle" ng-show="order.status=='WP'">支付</button>
+		<button type="button" class="btn btn-default" ng-show="order.status!='WP'&&order.status!='XX'">查看物流</button>
+		<button type="button" class="btn btn-mystyle" ng-show="order.status=='DD'">确认收货</button>
+	</div>
+</div>
+<!-- <div class="container-goods">
+	<div class="title-goods">
+		<div class="row">
+			<div class="col-xs-6">商铺名称<span></span></div>
+			<div class="col-xs-6 text-right textRed">仓库已发货</div>
+		</div>
+	</div>
+	<div class="content-goods" onclick="window.location.href='order-detail.html'">
+		<div class="row">
+			<div class="col-xs-3">
+				<img src="imgCache/tgtd1.png" alt="order img" width="100%" height="60">
+			</div> 
+			<div class="col-xs-7">
+				<p class="text-over"> 商品名称</p> 
+				<p class="text-over"> 商品详情描述商品详情描述商品详情描述商品详情描述商品详情描述商品详情描述商品详情描述商品详情描述商品详情描述商品详情描述商品详情描述商品详情描述</p> 
+			</div>
+			<div class="col-xs-2">
+				<p class="text-right"> ¥<strong>108.1</strong><br>×<span>1</span></p>
+			</div>
+		</div>
+	</div>
+	<div class="content-goods" onclick="window.location.href='order-detail.html'">
+		<div class="row">
+			<div class="col-xs-3">
+				<img src="imgCache/tgtd1.png" alt="order img" width="100%" height="60">
+			</div> 
+			<div class="col-xs-7">
+				<p class="text-over"> 商品名称</p> 
+				<p class="text-over"> 商品详情描述商品详情描述商品详情描述商品详情描述商品详情描述商品详情描述商品详情描述商品详情描述商品详情描述商品详情描述商品详情描述商品详情描述</p> 
+			</div>
+			<div class="col-xs-2">
+				<p class="text-right"> ¥<strong>108.1</strong><br>×<span>1</span></p>
+			</div>
+		</div>
+	</div>
+	<div class="title-goods title-goods-bb">
+		<div class="row">
+			<div class="col-xs-12 text-right">共<span>2</span>件商品&nbsp;&nbsp;&nbsp;合计：¥<span>100</span></div>
+		</div>
+	</div>
+	<div class="title-goods text-right">
+		<button type="button" class="btn btn-default">查看物流</button>
+		<button type="button" class="btn btn-mystyle">确认收货</button>
+	</div>
+</div> -->
+<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
+</body>
+</html>

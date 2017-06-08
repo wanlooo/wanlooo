@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>个人信息</title>
+<link href="css/personal.css" rel="stylesheet"/>
+<script language="javascript" src="js/jquery-1.12.4.min.js"></script>
+<script src="js/angular.min.js"></script>
+<script type="text/javascript" src="angularjs/app.js"></script>
+<script type="text/javascript" src="angularjs/controller/userInfoCtrl.js"></script>
+</head>
+<body ng-app="app"  ng-controller="userInfoCtrl" ng-init='init()'>
+<div class="first">
+    <div class="topinfo-container" onclick="window.location.href='userAccount.html'">
+       <img class="topinfo-img " ng-src="{{user.imageUrl}}" />
+       <a class="topinfo-name "><span ng-bind="user.nickName"></span></a>
+        <span class="fbright topinfo-fbright">></span>
+    </div>
+    <hr style="height:2px;border:none;border-top:8px solid #f0f0f0;"/>
+   <!--  <div onclick="window.location.href='userInfo.html'" class="bb">个人信息<span class="fbright">></span></div> -->
+    <div onclick="window.location.href='addressList.html'" class="bb">收货地址<span class="fbright">></span></div>
+    <div onclick="window.location.href='contactList.html'" class="bb">常用联系人<span class="fbright">></span></div>
+
+    <div class="first-2">
+    <ul>
+        <li><a href="login.html?tag=hyuserinfo">切换用户</a></li>
+        <li><a href="editPassword.html">修改密码</a></li>
+    </ul>
+</div>
+</div>
+
+<!-- <div class="second">
+	<div class="title">个人成就<span class="fbright rbtn">成就说明</span></div>
+    <div class="content">
+    	<div>
+        	<span class="inblock"><img src="images/p-img.jpg" /><a class="count">8</a></span>
+            <span class="inblock"><img src="images/p-img.jpg" /><a class="count">8</a></span>
+            <span class="inblock"><img src="images/p-img.jpg" /><a class="count">8</a></span>
+        </div>
+    </div>
+</div> -->
+
+<div class="third">
+	<div class="title">我的等级<span class="fbright rbtn">等级说明</span></div>
+    <div class="content">
+    	<div class="d1 inblock">
+        	<div class="line1">当前级别</div>
+            <div class="line2">2</div>
+            <div class="line3"><span class="bg1"></span></div>
+        </div>
+        <div class="d2 inblock">
+        	<div class="line1">升级还需要经验值</div>
+            <div class="line2">50%</div>
+            <div class="line3"><span class="bg3"></span></div>
+        </div>
+        <div class="d3 inblock">
+        	<div class="line1">满级</div>
+            <div class="line2">10</div>
+            <div class="line3"><span class="bg2"></span></div>
+        </div>
+       <!--  <div class="progress bg2"></div>
+        <div class="progress bg3" style="width:50%;"></div>
+        <div class="progress bg1" style="width:20%;"></div> -->
+    </div>
+    <div class="tail">
+    	<table>
+        <tr><td><a onclick="tab(1)" id="bt1" class="taboff">当前级别特权</a></td><td><a id="bt2" onclick="tab(2)" class="taboff">升级条件</a></td><td align="right"><a onclick="tab(3)" id="bt3" class="tabon">下一级别特权</a></td></tr>
+        </table>
+        <div>
+            <div id="tab1" class="cnt show">
+            当前特权：这里是当前特权的一些介绍，哈哈哈哈哈哈哈吼吼后防的哈是复读机啊是。
+            </div>
+            <div id="tab2" class="cnt hide">
+            升级条件：这里是当前特权的一些介绍，哈哈哈哈哈哈哈吼吼后防的哈是复读机啊是。
+            </div>
+            <div id="tab3" class="cnt hide">
+            设置轻松购：在这里介绍什么是轻松购，轻松购可以达到的效果如何。
+            </div>
+        </div>
+    </div>
+</div>
+<script language="javascript" type="text/javascript">
+function tab(count) {
+	$("#bt1").attr("class", "taboff");
+	$("#bt2").attr("class", "taboff");
+	$("#bt3").attr("class", "taboff");
+	$("#bt" + count).attr("class", "tabon");
+	$("#tab" + count).siblings().hide();
+	$("#tab" + count).show();		
+}
+</script>
+</body>
+</html>

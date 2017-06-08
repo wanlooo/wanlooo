@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<script language="javascript" src="js/jquery-1.12.4.min.js"></script>
+<title>test</title>
+<style type="text/css">
+    tr,td,th{
+        border:1px solid red;
+    }
+</style>
+</head>
+<body>
+<table>
+    <thead>
+        <tr>
+            <th>项目名称<button onclick="sort('name','asc')">顺序</button><button onclick="sort('name','desc')">倒序</button></th>
+            <th>负责部门<button onclick="sort('department','asc')">顺序</button><button onclick="sort('department','desc')">倒序</button></th>
+            <th>阶段<button onclick="sort('period','asc')">顺序</button><button onclick="sort('period','desc')">倒序</button></th>
+            <th>负责人<button onclick="sort('manager','asc')">顺序</button><button onclick="sort('manager','desc')">倒序</button></th>
+            <th>开始时间<button onclick="sort('start','asc')">顺序</button><button onclick="sort('start','desc')">倒序</button></th>
+            <th>结束时间<button onclick="sort('end','asc')">顺序</button><button onclick="sort('end','desc')">倒序</button></th>
+        </tr>
+    </thead>
+    <tbody>
+        
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    //全局缓存数据对象，因为用到button onclick事件，click对应的方法不能放到 $(function(){})里面
+    var cacheDate=[];
+
+    //获取数据ajax方法
+    $(function(){
+        $.ajax({
+            type:"get",
+            url:"./wtestdata.json",
+            dataType:"json",
+            contentType:'application/json;charset=utf-8',
+            success:function(response){
+                console.log(response);  
+                cacheDate = response ;   
+                showData();
+            }
+        });
+        
+    });
+
+    //显示页面数据
+    function showData(){
+        var tbodyHtml = "";
+        for(var i in cacheDate){
+            var data = cacheDate[i];
+            var tr = "<tr>";
+            tr += "<td>"+data.name+"</td>";
+            tr += "<td>"+data.department+"</td>";
+            tr += "<td>"+data.period+"</td>";
+            tr += "<td>"+data.manager+"</td>";
+            tr += "<td>"+data.start+"</td>";
+            tr += "<td>"+data.end+"</td>";
+            tr += "</tr>";
+            tbodyHtml += tr ;
+        }
+        $("tbody").html(tbodyHtml);
+    }
+
+    //按钮点击排序对应方法
+    function sort(param,order){
+        cacheDate = sortByParam(cacheDate,param,order);
+        showData();
+    }
+
+    //排序方法，原理为冒泡排序法
+    //list-原列表数据  objParam-排序属性   order：asc-顺序 desc-倒序
+    function sortByParam(list,objParam,order){
+        if(order == 'asc'){//顺序排序
+            for(var i=0;i<list.length;i++){
+                for (var j=i+1;j<list.length;j++) {
+                    if(list[i][objParam]>list[j][objParam]){
+                        var obj = list[i];
+                        list[i]=list[j];
+                        list[j]=obj;
+                    }
+    
+                }
+            }
+        }else{//倒序排序
+            for(var i=0;i<list.length;i++){
+                for (var j=i+1;j<list.length;j++) {
+                    if(list[i][objParam]<list[j][objParam]){
+                        var obj = list[i];
+                        list[i]=list[j];
+                        list[j]=obj;
+                    }
+                }
+            }
+        }
+        return list ;
+    }
+</script>
+</body>
+</html>

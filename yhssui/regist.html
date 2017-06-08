@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>注册</title>
+<link href="css/regist.css" rel="stylesheet" />
+<script src="js/angular.min.js"></script>
+<script type="text/javascript" src="angularjs/app.js"></script>
+<script type="text/javascript" src="angularjs/common/nextPage.js"></script>
+<script type="text/javascript" src="angularjs/controller/registCtrl.js"></script>
+<script type="text/javascript" src="angularjs/service/registService.js"></script>
+</head>
+<body ng-app="app" ng-controller="registCtrl">
+<div class="topimg"><img src="./images/reg-top.jpg"/></div>
+<div class="content">
+<ul>
+
+<li ><input ng-class="{'txt':show.usernamemsg =='','txt ok':show.usernamemsg =='ok','txt err':show.usernamemsg !=''&&show.usernamemsg !='ok'}" type="text" placeholder="用户名" ng-model="user.userName" ng-blur="proRegist.checkUserName()"/></li>
+<li style="height: 15px;color: red;font-weight: 700;" ng-show="show.usernamemsg !=''&&show.usernamemsg !='ok'"><span ng-bind="show.usernamemsg"></span></li>
+<li><input ng-class="{'txt':show.passwordmsg =='','txt ok':show.passwordmsg =='ok','txt err':show.passwordmsg!=''&&show.passwordmsg!='ok'}" type="password" placeholder="6-20位字母+数字组合密码" ng-model="user.password" ng-blur="proRegist.checkPassword()"/></li>
+<li style="height: 15px;color: red;font-weight: 700;" ng-show="show.passwordmsg!=''&&show.passwordmsg!='ok'"><span ng-bind="show.passwordmsg"></span></li>
+<li><input ng-class="{'txt':show.repasswordmsg =='','txt ok':show.repasswordmsg =='ok','txt err':show.repasswordmsg!=''&&show.repasswordmsg!='ok'}" type="password" placeholder="确认密码" ng-model="user.repassword" ng-blur="proRegist.checkRepassword()"/></li>
+<li style="height: 15px;color: red;font-weight: 700;" ng-show="show.repasswordmsg !=''&&show.repasswordmsg !='ok'"><span ng-bind="show.repasswordmsg"></span></li>
+<li><input class="txt" type="text" style="width:45%;" placeholder="手机号" ng-model="user.phoneNo" /><span class="block5"></span><input type="button" class="btn width30" value="发送验证码"/></li>
+<li><input ng-class="{'txt':show.namemsg =='','txt ok':show.namemsg =='ok','txt err':show.namemsg !=''&&show.namemsg !='ok'}"  type="text" placeholder="用户姓名" ng-model="user.name" ng-blur="proRegist.checkName()"/></li>
+<li style="height: 15px;color: red;font-weight: 700;" ng-show="show.namemsg !=''&&show.namemsg !='ok'"><span ng-bind="show.namemsg"></span></li>
+<li style="height: 20px;font-weight: 700;"><span class="block40" style="padding-left: 0px;margin-left: -1rem;">性别</span> 男&nbsp;<input type="radio" value="man" ng-model="user.gender" />&nbsp;&nbsp;女&nbsp;<input type="radio" value="woman" ng-model="user.gender"/></li>
+<li><input class="txt" type="text" placeholder="所在学校" ng-model="school.schoolname"/></li>
+<li><input class="txt" type="text" placeholder="所学专业" ng-model="school.profession"/></li>
+<li><span class="block40">证件照片</span><span class="block5"></span><input type="button" class="btn width30" value="上传照片"/></li>
+<li><input class="txt" type="text" placeholder="邀请码" ng-model="user.visiteCode"/></li>
+</ul>
+</div>
+<div class="regist"><a class='next' ng-click="proRegist.toNext()">下一步</a></div>
+<!-- <div class="regist"><a href="#">注 册</a></div> -->
+</body>
+</html>

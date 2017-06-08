@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8"> 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>设置密保</title>
+<link href="css/findpass.css" rel="stylesheet" />
+<script src="js/angular.min.js"></script>
+<script type="text/javascript" src="angularjs/app.js"></script>
+<script type="text/javascript" src="angularjs/common/nextPage.js"></script>
+<script type="text/javascript" src="angularjs/controller/registCtrl.js"></script>
+<script type="text/javascript" src="angularjs/service/registService.js"></script>
+</head>
+<body ng-app="app" ng-controller="registCtrl">
+<div class="content">
+<ul>
+<li>
+	<p class="question">密保问题1：<input class="txt ques" type="text" placeholder="请输入问题" ng-model="security[0].securityTitle"/>
+	</p>
+	<input class="txt pdleft25 pdright25" type="text" placeholder="请输入答案" ng-model="security[0].securityAnswer"/>
+</li>
+<li>
+	<p class="question">密保问题2：<input class="txt ques" type="text" placeholder="请输入问题" ng-model="security[1].securityTitle"/></p>
+    <input class="txt pdleft25 pdright25" type="text" placeholder="请输入答案" ng-model="security[1].securityAnswer"/>
+</li>
+<li>
+	<p class="question">密保问题3：<input class="txt ques" type="text" placeholder="请输入问题" ng-model="security[2].securityTitle"/></p>
+    <input class="txt pdleft25 pdright25" type="text" placeholder="请输入答案" ng-model="security[2].securityAnswer"/>
+</li>
+<li><input type="button" class="btn pdleft25 pdright25" value="注册" ng-click="regist.submit()"/></li>
+</ul>
+</div>
+</body>
+</html>

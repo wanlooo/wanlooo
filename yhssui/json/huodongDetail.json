@@ -1,0 +1,48 @@
+{
+	"success":true,
+	"hot_active":
+	{
+			"id":7,
+			"title":"FAYE 2010～2012",
+			"image":"img/wangfei_02.jpg",
+			"desc":"北京工人体育馆 王菲个人演唱会",
+			"date_start":"2016-9-20",
+			"date_end":"2016-9-27",
+			"address":"北京市朝阳区三里屯工人体育场北路",
+			"venue":"北京工人体育馆",
+			"price_min":"160",
+			"price_max":"480",
+			"star":4,
+			"detail":"2014李宇春Why Me Chris Lee (大连) 演唱会将于10月5日正式开启"
+	},
+	"recommend":[
+		{
+			"id":1,
+			"image":"img/wangfei_09.jpg"
+		},{
+			"id":2,
+			"image":"img/wangfei_11.jpg"
+		},{
+			"id":3,
+			"image":"img/wangfei_13.jpg"
+		},{
+			"id":4,
+			"image":"img/wangfei_09.jpg"
+		},{
+			"id":5,
+			"image":"img/wangfei_11.jpg"
+		},{
+			"id":6,
+			"image":"img/wangfei_13.jpg"
+		},{
+			"id":7,
+			"image":"img/wangfei_09.jpg"
+		},{
+			"id":8,
+			"image":"img/wangfei_11.jpg"
+		},{
+			"id":9,
+			"image":"img/wangfei_13.jpg"
+		}
+	]
+}

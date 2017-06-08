@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>编辑地址</title>
+<link href="css/address.css" rel="stylesheet"/>
+<link href="js\layer\skin\default\layer.css" rel="stylesheet"/>
+<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="js/layer/layer.js"></script>
+<script type="text/javascript" src="js/general.js"></script>
+
+<script type="text/javascript">
+    $(function(){
+        GetAddressInfo();//初始化页面，获取最新的所有联系人地址信息，并显示。
+        
+        $('.add').on('click', function(){
+            layer.open({
+                type: 1,
+                shade: false,
+                title: "新增地址", //不显示标题
+                content: getForm('','','',''),  //content: 'abc/xxx.action?id='+id, 
+                area:['300px','250px'],
+                btn:["确定","取消"],
+                btn1:function(){    //按钮一的回调
+                     var address = {name:'',phoneno:'',address:'',default:false};
+
+                     address.name=$("#formid").find("input").eq(0).val();
+                     address.phoneno=$("#formid").find("input").eq(1).val();
+                     address.address=$("#formid").find("input").eq(2).val();
+                     var d=$("#formid").find("input").eq(3).val();
+                     if(d=='true'){
+                        address.default=true;
+                     }
+                     
+                        $.ajax({
+                            type:"post",
+                            url:weburl+"/address/add",
+                            dataType:"json",
+                            contentType:'application/json;charset=utf-8',
+                            data:JSON.stringify(address),// 
+                            
+                            success: function(data) {
+                                
+                                window.location.reload();
+                            }
+                        }); 
+                     
+                },
+                btn2:function(){    //按钮二的回调
+                    
+                }  
+            });
+        });
+    
+    
+    
+    })
+function GetAddressInfo(){
+        $.ajax({
+                    type:"get",
+                    url:weburl+"/address/getList",
+                    dataType:"json",
+                    contentType:'application/json;charset=utf-8',
+                    success:function(data){
+                        console.log(data);
+                        if(data.success==true){
+                        
+                        var data=data.data;
+                        var html="<ul>";
+                        
+                        $.each(data,function(index,info){
+                            
+                            html+='<li id="'+info.id+'"><div class="part1"><div class="lineone clearfix"><div style="float:left;" class="address_name">'+info.name+'</div><div style="float:right;" class="address_phoneno">'+info.phoneno+'</div></div><div class="linetwo address_address">'+info.address+'</div></div><div class="part2 clearfix"><div style="float:left;">';
+                            if (info.default==true){html+='<div class="checkon"><input name="isDefault" type="checkbox" style="height:20px;width:20px;" class="radioclass input" value="true"></div><span class="on">默认地址</span>';}
+                            else if(info.default==false){html+='<div class="checkoff"><input name="isDefault" type="checkbox" style="height:20px;width:20px;" class="radioclass input" value="false"></div><span class="off">默认地址</span>';}
+                            
+                            html+='</div><div style="float:right;"><a class="edit">编辑</a><a class="del">删除</a></div></div></li>';
+                        });
+                        html+="</ul>";
+                        $(".add").before(html);
+                        EditAddress();//绑定编辑地址功能
+                        ClearAddress();//绑定删除地址功能
+                        IsDefault();//绑定 是否设为默认地址功能
+                        }
+                    }
+        })
+    }
+function IsDefault(){
+    $(".part2 input").on("click", function(){
+       
+        var id=$($(this).parent().parent().parent().parent()).attr("id");
+        $.ajax({
+                    type:"get",
+                    url:weburl+"/address/setDefault/"+id,
+                    dataType:"json",
+                    contentType:'application/json;charset=utf-8',
+                            success: function(data) {
+                                 //GetAddressInfo();//修改地址成功，重新加载数据页面
+                                 window.location.reload();
+                            }
+                        }); 
+    })    
+}
+function EditAddress(){
+        $(".edit").on("click", function(){
+            var info_name = $($(this).parent().parent().parent()).find(".address_name").text();
+            var info_phoneno = $($(this).parent().parent().parent()).find(".address_phoneno").text();
+            var info_address = $($(this).parent().parent().parent()).find(".address_address").text();
+            var info_id = $($(this).parent().parent().parent()).attr("id");
+            var info_default = $($(this).parent().parent()).find(".radioclass").val();
+            layer.open({
+                type: 1,
+                shade: false,
+                title: "修改地址", 
+                content:getForm(info_name,info_phoneno,info_address,info_default),
+                //content: 'abc/xxx.action?id='+id, 
+                area:['300px','250px'],
+                btn:["确定","取消"],
+                btn1:function(){    //按钮一的回调
+                    var address = {name:'',phoneno:'',address:'',default:false,id:info_id};
+
+                     address.name=$("#formid").find("input").eq(0).val();
+                     address.phoneno=$("#formid").find("input").eq(1).val();
+                     address.address=$("#formid").find("input").eq(2).val();
+                     var d=$("#formid").find("input").eq(3).val();
+                    
+                     if(d=='true'){
+                        address.default=true;
+                     }
+                        $.ajax({
+                            type:"post",
+                            url:weburl+"/address/update",
+                            dataType:"json",
+                            contentType:'application/json;charset=utf-8',
+                            data:JSON.stringify(address),
+                            success: function(data) {
+                                window.location.reload();//修改地址成功，重新加载数据页面
+                            }
+                        });    
+                },
+                btn2:function(){    //按钮二的回调
+                    
+                }  
+            });
+        });
+    }
+    function getForm(name,phoneno,address,isdefault){
+        var html = '<form  id="formid"><div class="pdladd pdradd"><div class="lineoneadd"><div>姓名:<input type="" name="name" class="layer-input" value="'+name+'"></div><div>电话:<input type="" name="phoneno" class="layer-input" value="'+phoneno+'"></div><div>地址:<input type="" name="address" class="layer-input" value="'+address+'"></div></div></div><div class="linethreeadd pdl5add pdr5add"><div style="float:left;">';
+
+        /*if(isdefault==""){
+             html+='<input name="isDefault" type="radio" value="" /><a class="defaulton">设为默认地址</a>';
+        }*/
+        /*
+        if (isdefault=="true"){
+             html+='<input name="isDefault" type="radio" value="true" checked/><a class="defaulton">设为默认地址</a>';
+        }
+         else if(isdefault=="false"){
+             html+='<input name="isDefault" type="radio" value="" /><a class="defaulton">设为默认地址</a>';
+        }*/
+               html+='</div></div></form>';    
+        return html;
+    }
+    function ClearAddress(){
+        
+        $(".del").on("click",function(){
+            var id=$($(this).parent().parent().parent()).attr("id");    
+            layer.confirm('确定要删除该地址信息吗？', {
+                btn: ['是的','我再想想'] //按钮
+                    }, function(){
+                        $.ajax({
+                            type:"get",
+                            url:weburl+"/address/delete/"+id,
+                            dataType:"json",
+                            contentType:'application/json;charset=utf-8',
+                            success:function(data){
+                                if(data.success==true){
+                                    layer.msg('删除成功', {icon: 1});
+                                    window.location.reload();
+                                }
+                            }
+                        })
+
+                        layer.msg('删除成功', {icon: 1});
+                    } );
+        });
+    }
+</script>
+</head>
+<body>
+<div class="content">
+<!-- <ul>
+<li>
+	<div class="part1">
+        <div class="lineone clearfix">
+            <div style="float:left;" class="address_name">测试用户</div>
+            <div style="float:right;" class="address_phoneno">13088888888</div>
+        </div>
+        <div class="linetwo address_address">天津市南开宾水西道，XXX小区XX楼XX们50
+        </div>
+    </div>
+    <div class="part2">
+    	<div style="float:left;">
+        	<a class="on"><input name="isDefault" type="radio" value="true" checked/>默认地址</a>
+        </div>
+        <div style="float:right;">
+        <a class="edit">编辑</a>
+        <a class="del">删除</a>
+       	</div>
+    </div>
+</li>
+</ul> -->
+<!-- <div class="add"><a href="" ><b>+</b>  <strong>新建地址</strong></a></div>
+ -->
+ <div class="add">+新建地址</div>
+
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

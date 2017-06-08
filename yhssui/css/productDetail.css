@@ -1,0 +1,36 @@
+
+
+.content-titlle{
+	height: 0.7rem;
+	padding: 0rem 0.3rem;
+	text-align: left;
+	line-height: 0.7rem;
+	font-size: 0.3rem;
+	margin-bottom: 0.2rem;
+	color: #3c3f58;
+	border-top: 1px solid #EDECEE;
+}
+.content-introduce{
+	height: 0.9rem;
+	padding: 0rem 0.3rem;
+	text-align: left;
+	    line-height: 1.5;
+	font-size: 0.3rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	color: #656576;
+	font-size: 0.28rem;
+}
+.content-images{
+	padding: 0.3rem;
+}
+.content-images img{
+	height: aotu;
+	width: 100%;
+}
+.select0{
+	margin-left: 0px;
+}
+.select1{
+	margin-left: 1rem;
+}

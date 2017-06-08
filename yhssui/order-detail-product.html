@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0">
+  <title>订单详情</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/orderlist.css">
+  <script type="text/javascript" src="js/jquery-1.12.4.min.js" ></script>
+  <script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/moment/moment.js"></script>
+  <script src="js/angular.min.js"></script>
+  <script type="text/javascript" src="angularjs/app.js"></script>
+  <script type="text/javascript" src="angularjs/controller/orderDetailCtrl.js"></script>
+</head>
+<body ng-app="app"  ng-controller="orderDetailCtrl">
+<div class="wait-info row">
+  <div class="col-xs-11 col-xs-offset-1">
+    <div ng-if="order.orderStatus=='WP'">
+        <div><p>等待买家付款</p></div>
+        <div><p>剩2天23小时自动关闭</p></div>
+    </div>
+  </div>
+</div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-1"><div class="addressbg"><img src="images/address.jpg"/></div></div>
+        <div class="col-xs-11">
+          <div class="row">
+            <div class="col-xs-6">收货人：<span ng-bind="express.name"></span></div>
+            <div class="col-xs-6 text-right"><span ng-bind="express.phoneno"></span></div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <p>收货地址：<span ng-bind="express.address"></span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<div class="container container-goods">
+  <div class="title-goods">
+    <div class="row">
+      <div class="col-xs-12">万麓商城</div>
+    </div>
+  </div>
+  <div class="content-goods">
+    <div class="row">
+      <div class="col-xs-3">
+        <img src="{{product.images[0].url}}" alt="order img" width="100%" height="60">
+      </div> 
+      <div class="col-xs-7">
+        <p class="text-over"> <span ng-bind="product.name"></span></p> 
+        <p class="text-over"> <span ng-bind="product.description"></span></p> 
+      </div>
+      <div class="col-xs-2">
+        <p class="text-right"> ¥<strong><span ng-bind="order.amount/order.quantity"></span></strong></p>
+        <p class="text-right">×<span ng-bind="order.quantity">1</span></p>
+      </div>
+    </div>
+  </div>
+  <div class="title-goods">
+    <div class="row">
+      <div class="col-xs-6">商品总价</div>
+      <div class="col-xs-6 text-right"><p>¥<span ng-bind="order.amount">108.8</span></p></div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6">运费（快递）</div>
+      <div class="col-xs-6 text-right"><p>¥<span ng-bind="express.expressPrice">10</span></p></div>
+    </div>
+    <div class="row title-goods-ba">
+      <div class="col-xs-6">订单总价</div>
+      <div class="col-xs-6 text-right"><p>¥<span ng-bind="order.totalAmount">118.8</span></p></div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6" ng-if="order.orderStatus!='PF'"><p><strong>需付款</strong></p></div>
+      <div class="col-xs-6" ng-if="order.orderStatus=='PF'"><p><strong>已付款</strong></p></div>
+      <div class="col-xs-6 text-right"><p>¥<span class="textRed" ng-bind="order.totalAmount">118.8</span></p></div>
+    </div>
+  </div>
+</div>
+<div class="order-info container">
+  <div class="order-num"><p>订单编号：<span ng-bind="order.orderNo">3751985448932136</span></p></div>
+  <div class="order-tradenum"><p>微信交易号：<span></span></p></div>
+  <div class="order-time"><p>创建时间：<span ng-bind="order.created">2017-01-01 22:47:58</span></p></div>
+</div>
+<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+  <div class="container-fluid">
+    <!-- <div class="navbar-header">
+        <a class="navbar-brand" href="#">更多</a>
+    </div> -->
+    <div class="text-right" ng-if="order.orderStatus=='WP'">
+        <!-- <button type="button" class="btn btn-default navbar-btn">修改地址</button> -->
+        <button type="button" class="btn btn-default navbar-btn">取消订单</button>
+        <button type="button" class="btn btn-mystyle">付款</button>
+    </div>
+  </div>
+</nav>
+ 
+</body>
+</html>

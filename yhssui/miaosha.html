@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="css/global.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="css/x_phone.css">
+<!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> -->
+<link rel="stylesheet" href="css/loading.css" />
+<script src="js/jquery-1.12.4.min.js"></script>
+<script src="js/angular.min.js"></script>
+<script type="text/javascript" src="angularjs/common/miaoshaPublic.js"></script>
+<script type="text/javascript" src="angularjs/app.js"></script>
+<script type="text/javascript" src="angularjs/service/miaoshaService.js"></script>
+<script type="text/javascript" src="angularjs/controller/miaoshaCtrl.js"></script>
+<title>秒杀活动</title>
+</head>
+<body ng-app="app" ng-controller="miaoshaCtrl" ng-init="miaosha.init()">
+<!-- <div class="load-img" id="load-img"><i class="fa fa-spinner fa-pulse"></i></div> -->
+<div class="loading-hide"><div class="loading-pic"></div></div> <!-- ng-show="loading" -->
+<!--head-->
+<!-- <div class="head">
+    <div class="title tc">今日秒杀</div>
+</div> -->
+<!--head end-->
+    
+<!--body-->
+<div class="body">
+	<!--today_spike-->
+	<div class="today_spike">
+    	<!--tabclick-->
+    	<div class="tabclick">
+        	<ul>
+            	<!-- <li><a class="active" href="javascript:void(0)"><b>12:00</b>进行中</a></li>
+                <li><a href="javascript:void(0)"><b>14:00</b>即将开始</a></li>
+                <li><a href="javascript:void(0)"><b>16:00</b>即将开始</a></li>
+                <li><a href="javascript:void(0)"><b>18:00</b>即将开始</a></li> -->
+                <li ng-repeat="tp in time_periods"><a ng-class="{'active':miaosha.selectedindex==$index}" ng-click = "miaosha.changeperiod($index)"><b><span ng-bind="tp.period+':00'"></span></b><span ng-bind="tp.title"></span></a></li>
+        	</ul>
+        </div>
+        <!--tabclick end-->
+        
+        <!--timebox-->
+        <div class="timebox" id="timebox">
+        	<div class="time"><samp></samp><font class="hour">00</font><span>∶</span><font class="minute">00</font><span>∶</span><font class="second">00</font></div>
+        </div>
+        <!--timebox end-->
+        
+        <!--itemlist-->
+        <div class="itemlist">
+        	<ul>
+            	<li ng-show="miaosha.activeinfo.actives.length > 0" ng-repeat="active in miaosha.activeinfo.actives" ng-click="miaosha.toMiaoshaDetail(miaosha.activeinfo,active)">
+                	<!--itemtop-->
+                    <div class="itemtop">
+                        <img class="itempic" ng-src="{{active.product.images[0].url}}">
+                        <div class="itemstatus">
+                            <div class="productname"><span ng-bind="active.product.name"></span></div>
+                            <!--star-->
+                            <div class="star">
+                                <i ng-repeat="s in getcountlist(active.star)"><img src="img/star1.png"></i>
+                                <!-- <i><img src="img/star1.png"></i>
+                                <i><img src="img/star1.png"></i>
+                                <i><img src="img/star1.png"></i> -->
+                                <i ng-repeat="s1 in getrestcountlist(active.star)"><img src="img/star2.png"></i>
+                            </div>
+                            <!--star end-->
+                            
+                            <!--price-->
+                            <div class="price">
+                            	<span>当前价格:<font>{{'¥'+active.activePrice}}</font></span>
+                                <samp>{{'¥'+active.originalPrice}}</samp>
+                            </div>
+                            <!--price end-->
+                            
+                            <!--number-->
+                            <div class="number">
+                            	<span ng-bind="'数量:'+active.quantity"></span>
+
+                                <a ng-show="miaosha.activeinfo.status == 1" class="panic_buying" ng-click="miaosha.toMiaoshaDetail(miaosha.activeinfo,active)">抢购</a>
+                                
+                                <a ng-show="miaosha.activeinfo.status != 1" class="panic_buying" ng-click="miaosha.toMiaoshaDetail(miaosha.activeinfo,active)">查看</a>
+
+                                <!-- <a ng-show="miaosha.activeinfo.status != 1" class="panic_nobuying" ng-click="miaosha.toMiaoshaDetail(miaosha.activeinfo,active)">抢购</a> -->
+                            </div>
+                            <!--number end-->
+                        </div>
+                    </div>
+                    <!--itemtop end-->
+            	</li>
+                <li ng-show="miaosha.activeinfo.actives.length <= 0">
+                   <div align="center"><h1>无对应时段秒杀活动</h1></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--today_spike-->
+</div>
+
+<!--body end-->
+<script type="text/javascript">
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+            var clientWidth = docEl.clientWidth;
+            if (!clientWidth) return;
+            docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+            };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+            })(document, window);
+    </script>
+
+</body>
+</html>

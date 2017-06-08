@@ -1,0 +1,271 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/global.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="css/x_phone.css">
+    <link rel="stylesheet" href="css/swiper-3.3.1.min.css" />
+    <script type="text/javascript" src="js/adaption.js"></script>
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="js/jquery.sky.carousel-1.0.min.js"></script>
+    <!-- <script type="text/javascript" src="js/xiong.js"></script> -->
+    <!-- <script type="text/javascript" src="js/huodong.js"></script> -->
+</head>
+<body>
+    <!--head-->
+    <div class="head">
+        <div class="title tc">热门活动</div>
+    </div>
+    <!--head end-->
+    <!--body-->
+    <div class="body">
+        <!--hotactivity-->
+        <div class="hotactivity">
+            <!--line-->
+            <div class="nav">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide on">
+                            <a href="javascript:void(0);">
+                               
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="javascript:void(0);">
+                               
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="javascript:void(0);">
+                               
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="javascript:void(0);">
+                               
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="javascript:void(0);">
+                                
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="javascript:void(0);">
+                                
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--line end-->
+            <div class="hotactivity">
+                <div class="linecontentwraper">
+            </div>
+        </div>
+        <!--hotactivity-->
+    </div>
+    <!--body end-->
+    <script type="text/javascript" src="js/swiper-3.3.1.jquery.min.js"></script>
+    <script>
+    $(function(){
+    
+    //获取数据，初始化页面，拼title，拼body
+    var weburl = 'http://localhost:91/web';
+    $.ajax({
+        type:"get",
+        url:"yhssui/json/huodong.json",
+        dataType:"json",
+        contentType:'application/json;charset=utf-8',
+        success:function(data){
+            
+            var data=data.huodongs;
+            //拼nav
+            $.each(data,function(i,huodong){
+                var div=$(".nav .swiper-container .swiper-wrapper .swiper-slide").eq(i);
+                var html='<div class="place">'+huodong.typename+'</div>' ;
+                $(div).children("a").append(html); 
+            })
+            //nav的点击事件
+            new ChanceBtn('.hotactivity','.nav .swiper-container .swiper-wrapper .swiper-slide','.linecontent');
+            
+            //拼body
+            var html="";
+            $.each(data,function(index,huodong){
+                html+='<div class="linecontent on"><div class="typename"><strong>'+huodong.typename+'</strong>';
+                html+='<div class="star">'
+                //拼星星
+                var starnum=huodong.huodong[0].star;
+
+                    for(var j=1;j<=starnum;j++){
+                        html+='<i><img src="img/star1.png"></i>';
+                    }
+                    var starnum=5-starnum;
+                    for(var k=1;k<=starnum;k++){
+                        html+='<i><img src="img/star2.png"></i>';
+                    }
+
+                html+='</div></div>';
+                html+='<div class="project"><div class="carousel"><div class="carouselwrapper"><ul class="carouselcontainer">'
+                //拼图片
+                $.each(huodong.huodong,function(i,imginfo){
+                    html+='<li><img src="'+imginfo.image+'"><div class="sccontent"><span class="amount">¥'+imginfo.amount_min+'～'+imginfo.amount_max+'</span>';
+                    html+='<h2>'+imginfo.title+'</h2>';
+                    html+='<div class="star">';
+                    //拼星星
+                    var starnum=imginfo.star;
+                    for(var j=1;j<=starnum;j++){
+                        html+='<i><img src="img/star1.png"></i>';
+                    }
+                    var starnum=5-starnum;
+                    for(var k=1;k<=starnum;k++){
+                        html+='<i><img src="img/star2.png"></i>';
+                    }
+                    html+='</div><p>'+imginfo.date_begin+'~'+imginfo.date_end+'</p><p>'+imginfo.address+'</p></div></li>';
+
+                })
+                html+='</ul></div></div></div></div>';
+            })
+            $(".linecontentwraper").append(html);
+        
+            $('.carousel').carousel({
+                    itemWidth: 480,
+                    itemHeight: 378,
+                    distance: 0,
+                    selectedItemDistance: 35,
+                    selectedItemZoomFactor: 0.5,
+                    unselectedItemZoomFactor: 0.4,
+                    unselectedItemAlpha: 0.3,
+                    motionStartDistance: 140,
+                    topMargin: 30,
+                    gradientStartPoint: 0.36,
+                    gradientOverlayColor: "#ffffff",
+                    gradientOverlaySize: 190,
+                    selectByClick: true
+                });
+            //页面初始化 显示第一项活动：演唱会
+            $(".linecontent:eq(0)").addClass("on").siblings().removeClass("on");  
+
+            var startX = 0,
+            startY = 0;
+            window.onload = bindEvent;
+        }
+    }) 
+})
+    //touchstart事件
+    function touchSatrtFunc(evt) {}
+
+    //touchmove事件，这个事件无法获取坐标
+    function touchMoveFunc(evt) {}
+
+    
+    function bindEvent() {
+            document.addEventListener('touchstart', touchSatrtFunc, false);
+            document.addEventListener('touchmove', touchMoveFunc, false);
+            document.addEventListener('touchend', touchEndFunc, false);
+    }
+    function ChanceBtn(id,btnClass,contClass,fnEnd){
+        var _this=this;
+
+        this.k=0;
+        
+        $(id).find(btnClass).click(function(){
+            _this.k=$(this).index();
+            $(this).siblings().removeClass('on');
+            $(this).addClass('on');
+            $(this).parents(id).find(contClass).removeClass('on');
+            $(this).parents(id).find(contClass).eq(_this.k).addClass('on');
+
+            if(fnEnd)fnEnd();
+        })
+    }
+    var swiper = new Swiper('.nav .swiper-container', {
+        pagination: '.swiper-pagination',
+        slidesPerView: 4.5,
+        paginationClickable: true,
+    });
+    var swiper = new Swiper('.content-bd-img .swiper-container', {
+        pagination: '.swiper-pagination',
+        slidesPerView: 'auto',
+        centeredSlides: true,
+        paginationClickable: true,
+        spaceBetween: 30
+    });
+
+    //全局变量，触摸开始位置
+    var startX = 0,
+        startY = 0;
+
+    //touchstart事件
+    function touchSatrtFunc(evt) {}
+
+    //touchmove事件，这个事件无法获取坐标
+    function touchMoveFunc(evt) {}
+
+    function touchEndFunc(evt) {
+        setTimeout(function() {
+            var _total_length = $(".on li").length;
+
+            $(".on li").each(function() {
+
+                var _this_zindex = $(this).css("z-index");
+                if (_this_zindex != _total_length) {
+                   
+                    $(this).children(".sccontent").find("div").slideUp();
+                    $(this).children(".sccontent").find("p").slideUp();
+                } else {
+                    $(this).children(".sccontent").find("div").slideDown();
+                    $(this).children(".sccontent").find("p").slideDown();
+                }
+            });
+        }, 500);
+    }
+    
+    //绑定事件
+   
+    </script>
+    <script type="text/javascript">
+    $(function() {
+        $(".linecontent:eq(0)").addClass("on").siblings().removeClass("on");
+        n = $('.line li').size() - 2;
+        var wh = 100 * n + "%";
+        $('.line').width(wh);
+        var lt = (100 / n / 4) + 2.5;
+        var lt_li = lt + "%";
+        $('.line li').width(lt_li);
+        var y = 0;
+        var w = n / 2;
+        $(".line").swiper({
+            swipeLeft: function() {
+                if (y == -lt * w) {
+                    //                  alert('已经到最后页');
+                } else {
+                    y = y - lt;
+                    var t = y + "%";
+                    $(this).css({
+                        '-webkit-transform': "translate(" + t + ")",
+                        '-webkit-transition': '500ms linear'
+                    });
+                }
+            },
+            swipeRight: function() {
+                if (y == 0) {
+                    //                  alert('已经到第一页') 
+                } else {
+                    y = y + lt;
+                    var t = y + "%";
+                    $(this).css({
+                        '-webkit-transform': "translate(" + t + ")",
+                        '-webkit-transition': '500ms linear'
+                    });
+                }
+            }
+        });
+    });
+    </script>
+</body>
+
+</html>

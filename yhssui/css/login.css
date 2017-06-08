@@ -1,0 +1,14 @@
+body {background-image: url('../images/login-bg.jpg') !important; background-size: cover;text-align: center;}
+    .content {margin:0 auto; margin-top:25%;width:100%;margin-bottom:0px;height:90%;}
+    .content .title {color:#ffffff;font-size:46px;font-family:Verdana, Geneva, sans-serif;font-weight:100;line-height:1.5em;}
+    .content .descr {color:#ffffff;font-size:10px;font-family:Verdana, Geneva, sans-serif;font-weight:100;line-height:1.5em;}
+    .content tr {width:100%;display:block;margin-bottom:15px;}
+    .content tr td {width:100%;display:block;}
+    .content .txt {width:70%;border-radius:20px;-moz-border-radius:20px;height:40px;padding-left:15px;background:none;border:#ffffff 1px solid;color:#ffffff;font-size:16px;}
+    .content .btn {box-sizing: content-box;padding-left:15px;width:70%;border-radius:20px;-moz-border-radius:20px;height:40px;border:none;text-align:center;}
+    .content .validate {color:#3c3f58;font-size:16px;font-weight:normal;background:#d1dbec;}
+    .content .submit {color:#ffffff;font-size:16px;font-weight:normal;background:#3c3f58;}
+    .tail {margin:0 auto; width:50%;height:10%; text-align:center;border-collapse:collapse;margin-top:0px;}
+    .tail td {color:#ffffff;padding:0px;margin:0xp;font-size:14px;}
+    .tail a:link,a:visited {color:#ffffff;font-size:14px;text-decoration:none;}
+    .tail a:active {font-weight:500;}

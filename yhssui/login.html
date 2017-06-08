@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>登录</title>
+<link href="css/login.css" rel="stylesheet" />
+<script src="js/angular.min.js"></script>
+<script type="text/javascript" src="angularjs/app.js"></script>
+<script type="text/javascript" src="angularjs/common/nextPage.js"></script>
+<script type="text/javascript" src="angularjs/controller/loginCtrl.js"></script>
+<script type="text/javascript" src="angularjs/service/loginService.js"></script>
+</head>
+<body ng-app="app" ng-controller="loginCtrl">
+<table class="content">
+	<tr>
+    	<td>
+        	<div class="title">Welcome</div>
+            <div class="descr">Lorem ipsum dolor sit amet,consectetur adipiscing elit.</div>
+            <div class="descr"> Donec auctor neque sed pretium luctus.</div>
+        </td>
+    </tr>
+	<tr>
+		<td>
+			<input type="text" placeholder="用户名" class="txt" ng-model="user.loginName"/>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<input type="password" placeholder="密码" class="txt" ng-model="user.password"/>
+		</td>
+	</tr>
+	<!-- <tr>
+		<td>
+			<input type="button" value="获取验证码" class="btn validate" />
+		</td>
+	</tr> -->
+	<tr>
+		<td>
+			<input type="submit" value="登录" class="btn submit" ng-click = 'login.toLogin()'/>
+		</td>
+	</tr>
+</table>
+<table class="tail">
+<tr>
+	<td style="width:50%;"><a ng-click="findPassword()">找回密码</a></td><td style="width:10%;">|</td><td><a ng-click="toRegist()">注册</a></td></tr>
+</table>
+</body>
+</html>

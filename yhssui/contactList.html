@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>编辑联系人</title>
+<link href="css/contact.css" rel="stylesheet"/>
+<link href="js\layer\skin\default\layer.css" rel="stylesheet"/>
+<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="js/layer/layer.js"></script>
+<script src="js/angular.min.js"></script>
+<script type="text/javascript" src="angularjs/app.js"></script>
+<script type="text/javascript" src="angularjs/service/contactService.js"></script>
+<script type="text/javascript" src="angularjs/controller/contactCtrl.js"></script>
+
+
+</head>
+<body ng-app="app" ng-controller="contactCtrl">
+<div class="content">
+<ul>
+<li ng-repeat='contact in contacts' id="{{contact.id}}">
+    <div class="part1">
+       
+            <div  class="lineone clearfix">
+                <div class="part1_l fl">{{contact.name}}</div> 
+                <div class="part1_r fr">{{contact.mobileNo}}</div>
+            </div>
+            <div  class="linetwo clearfix">
+                <div class="part1_l fl" ng-if="contact.idType=='ID'">身份证</div>
+                <div class="part1_l fl" ng-if="contact.idType!='ID'">其他</div>
+                <div class="part1_r fr">{{contact.idNo}}</div>
+            </div>
+     
+    </div>
+    <div class="part2 clearfix">
+        <div class="linethree">
+            <a class="edit"  ng-click="layerFormEdit(contact)" on-finish-render="initContacts()">编辑</a>
+            <a class="del" ng-click="layerFormDel(contact)">删除</a>
+        </div>
+    </div>
+</li>
+
+</ul>
+<!-- <div class="add"><a href="" ><b>+</b>  <strong>新建地址</strong></a></div>
+ -->
+ 
+    
+ <!-- 
+     <form id="formid">
+        <div class="pdladd pdradd">
+            <div class="lineoneadd">
+                <div><span>姓名:</span><input type="" name="name" class="layer-input" value=""></div>
+                <div><span>电话:</span><input type="" name="phoneno" class="layer-input" value=""></div>
+                <div>证件类型:
+                    <div class="idtype" >
+                        <select name="idType" lay-verify="required" class="layer-select">
+                        <option value="">请选择</option>
+                        <option value="1">身份证</option>
+                        </select>
+                    </div>
+                </div>
+                <div>证件号码:<input type="" name="idNo" class="layer-input" value=""></div>
+            </div>
+        </div>
+    </form> -->
+
+<div class="add" ng-click="layerFormAdd()">+新增联系人</div>
+</body>
+</html>

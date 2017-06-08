@@ -1,0 +1,195 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+<link href="css/global.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="css/x_phone.css">
+<link href="js/layer/skin/default/layer.css" rel="stylesheet"/>
+<title>提交订单</title>
+</head>
+<body>
+<!--body-->
+<div class="body">
+    <!--placeorder-->
+    <div class="placeorder">
+        <div class="order_address mui_flex align_center">
+            <div class="cell content">
+                <div class="info">
+                    <span class="fl address_label">收货人:</span>
+                    <input class="fl address_name" id='name' placeholder='请输入姓名'/>
+                    <!-- <span class="fl" id='name'></span> -->
+                    <input class="fr address_phone" id='phoneno' placeholder='请输入手机号'/>
+                    <!-- <span class="fr" id='phoneno'></span> -->
+                </div>
+                <div class="detail">
+                    <p><span>收货地址：</span><input class="address_address" id='address' placeholder='请输入收货人地址'/></p>
+                    <a ></a>
+                </div>
+            </div>
+        </div>
+        <div class="split_line"><img src="img/line.jpg"></div>
+        <div class="order_order">
+                <!--itemtop-->
+                    <div class="itemtop">
+                        <img class="itempic" src="img/img4.jpg">
+                        <div class="itemstatus">
+                            <div class="productname">Muse冰淇淋</div>
+                            <div class="coloroptions"><span>颜色选项：</span><span>随机</span></div>
+                            <!--price-->
+                            <div class="price">
+                                <span id='current'>¥48.00</span>
+                                <samp id='active'>¥257.00</samp>
+                            </div>
+                            <!--price end-->
+                        </div>
+                    </div>
+                <!--itemtop end-->
+                
+                <!--order_item-->
+                <div class="order_item">
+                    <label class="buy_single_row">
+                        <div class="title">购买数量</div>
+                        <div class="goods">
+                            <span id="pull_left" class="pull_left"></span>
+                            <span class="pull" id="pull" >0</span>
+                            <span id="pull_right" class="pull_right"></span>
+                        </div>
+                    </label>
+                    <label class="buy_single_row">
+                        <div class="title">配送方式</div>
+                        <div class="content">
+                            <span>免运费</span>
+                        </div>
+                    </label>
+                    <label class="buy_single_row">
+                        <div class="title">备注信息：</div>
+                        <textarea id="remark" class="texatea" ></textarea>
+                    </label>
+                </div>
+                <!--order_item end-->
+    </div>
+    </div>
+    <!--placeorder end-->
+</div>
+<!--body end-->
+<div class="foot" style="position: fixed;bottom: 0;">
+    <div class="foot_fl">合计:¥<span id='amount'>0</span></div>
+    <div class="foot_fr" id="create"><a href="javascript:void(0)">确认下单</a></div>
+</div>
+
+</body>
+<script type="text/javascript" src="js/adaption.js"></script>
+<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/layer/layer.js"></script>
+<script type="text/javascript" src="js/general.js"></script>
+<script type="text/javascript">
+    var miaoshaDetail;
+    var addressList = [];
+    var showAddress = {};
+    $(function(){
+        if(window.localStorage.miaoshaDetail == undefined){
+            alert('请正确进入该页面');
+            return false;
+        }
+        miaoshaDetail = JSON.parse(window.localStorage.miaoshaDetail);
+        console.log(miaoshaDetail);
+        initSelectCount();
+        showProductDetail();
+        getAndShowAddress();
+        $("#create").click(function(){
+            createOrder();
+        });
+    });
+    function initSelectCount(){
+        var redu = document.getElementById('pull_left');
+        var add = document.getElementById('pull_right');
+        redu.onclick = function(){
+            var pull_value = parseInt($('#pull').text())-1;
+            if (parseInt(pull_value)<0) {pull_value = 0;}
+            $('#pull').text(pull_value);
+            $('#amount').text(parseFloat(miaoshaDetail.activePrice)*pull_value);
+        }
+        add.onclick = function(){
+            var pull_value = parseInt($('#pull').text())+1;
+            $('#pull').text(pull_value);
+            $('#amount').text(parseFloat(miaoshaDetail.activePrice)*pull_value);
+        }
+    }
+    //初始化商品数量选择
+    function getAndShowAddress(){
+        $.ajax({
+            type:"get",
+            url:weburl+"/address/getList",
+            dataType:"json",
+            contentType:'application/json;charset=utf-8',
+            success:function(data){
+                if(data.success && data.data.length>0){
+                    addressList = data.data ;
+                    showAddress = addressList[0];
+                    for(var address in addressList){
+                        if(address.default){
+                            showAddress = address;
+                        }
+                    }
+                    showDefaultAddress();
+                }else{
+                    alert(data.reason);
+                }
+            }
+        })
+    }
+    function showDefaultAddress(){
+        $('#name').val(showAddress.name); 
+        $('#phoneno').val(showAddress.phoneno);
+        $('#address').val(showAddress.address);
+    }
+    function showProductDetail(){
+        $('.itempic').attr('src',miaoshaDetail.product.images[0].url);
+        $('.productname').text(miaoshaDetail.product.name); 
+        $('#current').text('¥'+miaoshaDetail.activePrice);
+        $('#active').text('¥'+miaoshaDetail.originalPrice);
+    }
+    function createOrder(){
+        console.log("in");
+        var order={
+            orderType:"MS",
+            uuid:"123456",
+            amount:$('#amount').text(),
+            activeId:miaoshaDetail.id,
+            quantity:$('#pull').text(),
+            properties:"随机颜色",
+            remark:$('#remark').val(),
+            express:{
+                orderType:"MS",
+                name:$('#name').val(),
+                phoneno:$('#phoneno').val(),
+                address:$('#address').val(),
+                expressType:"免费",
+                expressPrice:"0"
+            }
+        }
+        console.log(order);
+        $.ajax({
+            type:"post",
+            url:weburl+"/order/create/product",
+            dataType:"json",
+            data:JSON.stringify(order),
+            contentType:'application/json;charset=utf-8',
+            success:function(data){
+                if(data.success){
+                    alert("创建订单成功");
+                    window.location.href='order-detail-product.html?orderNo='+data.orderNo ;
+                }else{
+                    alert(data.reason);
+                }
+            }
+        })
+    }
+</script>
+
+
+</html>

@@ -1,0 +1,32 @@
+article,aside,details,figcaption,figure,footer,header,hgroup,nav,section {display:block;}
+html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,form,fieldset,legend,input,lable,textarea,p,blockquote,th,td {margin:0;padding:0;}
+html{font-size:100%;overflow-y:scroll;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}
+table{border-collapse: collapse;border-spacing:0;}
+fieldset,img{border:0;}
+address,caption,cite,code,dfn,em,th,var{font-style:normal; font-weight:normal;}
+ol,ul{list-style:none;}
+h1,h2,h3,h4,h5,h6{font-weight:normal;font-size:100%;}
+body{font-size: 13px;line-height: 18px;color: #333; width:100%;}
+.box_163css{ overflow:hidden;width:100%;height:2rem;font-weight: 300;font-size: 20px;line-height: 36px;position:relative;}
+.line{ position:absolute; height:60px; left:0; line-height:60px; text-align:center;  cursor:pointer;}
+.line li{float:left;height:1.5rem;  background-color:#A3ABB8; margin-left:5px; z-index: 10;}
+
+.line li a{ color:#ffffff; text-decoration:none;    color: #ffffff;
+    text-decoration: none;
+    
+    }
+.line li:nth-of-type(2){ background-color: #3C3F58;}
+.line li:nth-of-type(4){ background-color: #3C3F58;}
+.line img{
+	width: 0.5rem;
+	height: auto;
+}
+.place {
+    margin-left: 0.08rem;
+    color: white;
+    width: 0.8rem;
+    height: 0.5rem;
+    font-size: 0.26rem;
+    margin-top: 0.7rem;
+    font-family: "黑体";
+}

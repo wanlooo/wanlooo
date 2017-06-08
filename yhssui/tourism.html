@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="css/tourism.css" />
+		<!--<link rel="stylesheet" href="css/tourism-nav.css" />-->
+		<link rel="stylesheet" href="css/swiper-3.3.1.min.css" />
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/swiper-3.3.1.jquery.min.js" ></script>
+		<!--<script type="text/javascript" src="js/jquery.touchSwipe.min.js"></script>-->
+		<script type="text/javascript" src="js/general.js"></script>
+		 <style>
+   
+   </style>
+		<script type="text/javascript">
+    	(function (doc, win) { 
+			var docEl = doc.documentElement,
+			resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+			recalc = function () {
+			var clientWidth = docEl.clientWidth;
+			if (!clientWidth) return;
+			docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+			};
+			if (!doc.addEventListener) return;
+			win.addEventListener(resizeEvt, recalc, false);
+			doc.addEventListener('DOMContentLoaded', recalc, false);
+			})(document, window);
+
+			$(function(){
+				$.ajax({
+					type:"get",
+					url:weburl+"/hotelTrip/getList",
+					dataType:"json",
+					contentType:'application/json;charset=utf-8',
+					success:function(data){
+						console.log(data);
+						if(data.success==true){
+						
+						var data=data.data;
+						
+						var hotelTheme =[];//去重主题
+						var themeImages={};// 
+
+						
+						$.each(data,function(i,hotel){
+							//获取所有主题
+							
+							var theme = hotel.hotelTheme;
+							var cflag = false ;
+							$.each(hotelTheme,function(i,t){
+								if(t.id == theme.id){
+									cflag = true;
+								}
+							});
+							if(!cflag){
+								hotelTheme.push(theme);
+							}
+							//步骤一:得到所有不相同的主题，去掉重复的主题
+							//得到的数据结构（去重后的数据）：[{"id":1,"name":"水上文明","desc":"威尼斯（venice）是意大利东北部著名的旅游与工业城市。也是为你托地区的首府"},{"id":4,"name":"往日帝国","desc":"威尼斯（venice）是意大利东北部著名的旅游与工业城市。也是为你托地区的首府"}]
+
+
+							//步骤二，获取每个主题下的所有第一张图片
+							var image = {}; 
+							if(themeImages[hotel.hotelTheme.id+'']){
+								image.id = hotel.id;
+								image.imageurl = hotel.hotel.images.list[0];
+								themeImages[hotel.hotelTheme.id].push(image);
+							}else{
+								themeImages[hotel.hotelTheme.id+''] = [];
+								image.id = hotel.id;
+								image.imageurl = hotel.hotel.images.list[0];
+								themeImages[hotel.hotelTheme.id].push(image);
+							}
+
+						});
+						console.log(JSON.stringify(hotelTheme));
+						console.log(JSON.stringify(themeImages));
+
+						//循环遍历hotelTheme，结合themeImages拼接图片
+						$.each(hotelTheme,function(i,theme){
+							var content_hd = '<div class="content-hd">'+
+											 '<div class="civilization fl"><b>'+theme.name+'</b></div>'+
+											'<div class="fr" style=" margin-top: 0.3rem;width: 0.5rem; height: 0.5rem; position:'+'relative;text-align: center;"><img src="img/nx.jpg"/></div></div>';
+							var content_bd = '<div class="content-bd"><div class="content-bd-img">'+
+											'<div class="swiper-container"><div class="swiper-wrapper" style="height: 80% !important;">';
+
+							$.each(themeImages[theme.id+''],function(i,image){
+
+								content_bd +='<div class="swiper-slide"><img src="'+image.imageurl.imageUrl+'" onclick="window.location.href=(\'tourismdetail.html?id='+image.id+'\');"/></div>';
+							});
+							content_bd += '</div><div class="intro">'+theme.desc+'</div></div></div></div>';
+							$("#content").append(content_hd + content_bd);
+							console.log(JSON.stringify(themeImages));
+						});
+
+						var swiper = new Swiper('.nav .swiper-container', {
+						        pagination: '.swiper-pagination',
+						        slidesPerView: 3,
+						        paginationClickable: true,
+						//      spaceBetween: 2
+						    	});
+								 
+								 var swiper = new Swiper('.content-bd-img .swiper-container', {
+							        pagination: '.swiper-pagination',
+							        slidesPerView: 'auto',
+							        centeredSlides: true,
+							        paginationClickable: true,
+							        spaceBetween: 30
+							         });
+						
+						}
+						
+//onclick="javascript:window.location.href="tourismdetail.html?"'+i+'"
+
+					}
+				})
+			})
+    </script>
+	</head>
+	<body>
+		<div id="hearder">
+			<img src="img/aplane.png" class="himg"/>
+			<div class="titlle">Where would you like to go</div>
+			<div class="nav">
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						
+						<div class="swiper-slide"><a href="#"><img src="img/jd.png"/><div class="place">酒店</div></a></div>
+						<div class="swiper-slide"><a href="#"><img src="img/xfj.png"/><div class="place">机票</div></a></div>
+						<div class="swiper-slide"><a href="#"><img src="img/dj.png"/><div class="place">度假</div></a></div>
+				 		<!-- <div class="swiper-slide"><a href="#"><img src="img/dj.png"/><div class="place">度假</div></a></div> -->
+					</div>
+        <!-- Add Pagination -->
+        		</div>
+				
+			</div>
+		</div>
+		
+		 <div id="content">
+			
+		</div>
+		
+		
+		
+		 <script>
+		 /*var swiper = new Swiper('.nav .swiper-container', {
+        pagination: '.swiper-pagination',
+        slidesPerView: 3,
+        paginationClickable: true,
+//      spaceBetween: 2
+    	});
+		 
+		 var swiper = new Swiper('.content-bd-img .swiper-container', {
+	        pagination: '.swiper-pagination',
+	        slidesPerView: 'auto',
+	        centeredSlides: true,
+	        paginationClickable: true,
+	        spaceBetween: 30
+	         });*/
+	    
+		
+		</script>
+		
+	</body>
+</html>

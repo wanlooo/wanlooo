@@ -1,0 +1,50 @@
+{
+	"success":true,
+	"tuangouActiveTime":[
+		{
+			"bargainStart":"2016-12-19 00:00:00",
+			"bargainEnd":"2016-12-21 00:00:00",
+			"saleEnd":"2016-12-25 12:00:00"
+		},
+		{
+			"bargainStart":"2016-12-21 00:00:00",
+			"bargainEnd":"2016-12-23 00:00:00",
+			"saleEnd":"2016-12-27 00:00:00"
+		},
+		{
+			"bargainStart":"2016-12-23 00:00:00",
+			"bargainEnd":"2016-12-27 00:00:00",
+			"saleEnd":"2016-12-29 00:00:00"
+		}
+	],
+	"tuangouActiveDetail":[
+		{
+			"id":1,
+			"title":"色彩艳丽的口红眉笔",
+			"desc":"这是title描述--冰淇淋MUSE冰淇淋MUSE冰淇淋MUSE冰淇",
+			"activePrice":"48.00",
+			"presentPrice":"48.00",
+			"quantity":113,
+			"joinQuantity":6,
+			"joinCount":40,
+			"star":3,
+			"startTime":"2016-12-24 08:00:00",
+			"product":{
+				"image":"img/photo.jpg",
+				"name":"Muse冰淇淋"
+			},
+			"activeItem":[
+				{
+					"stall":1,
+					"price":"38.00",
+					"count":20
+				},
+				{	
+					"stall":2,
+					"price":"28.00",
+					"count":50
+				}
+			]
+		}
+	]
+}
