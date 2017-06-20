@@ -2,10 +2,13 @@ package com.cn.xxx.yhsscore.service.impl;
 
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cn.xxx.commons.service.CacheService;
+import com.cn.xxx.commons.util.JsonUtils;
 import com.cn.xxx.yhsscore.dao.UserDao;
 import com.cn.xxx.yhsscore.model.UserDO;
 import com.cn.xxx.yhsscore.service.UserService;
@@ -17,7 +20,7 @@ import com.cn.xxx.yhsscore.service.WechatUserService;
 @Service(value="userService")
 public class UserServiceImpl implements UserService{
 	
-//	private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
 	
 	@Autowired  
 	protected UserDao userDao;
@@ -84,6 +87,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public UserDO getCacheUser() throws Exception {
 		UserDO user = request.getObject("user");
+		LOGGER.info("session中用户为：》》》"+JsonUtils.objectToJson(user));
 		if(user == null){
 			user = this.userDao.queryObjectById(UserDO.class, 2L);
 //			throw new Exception("无法获取网站用户信息，请尝试重新进入该页面");

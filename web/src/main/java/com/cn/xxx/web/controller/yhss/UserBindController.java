@@ -3,6 +3,8 @@ package com.cn.xxx.web.controller.yhss;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cn.xxx.commons.controller.BaseController;
+import com.cn.xxx.commons.util.JsonUtil;
+import com.cn.xxx.commons.util.JsonUtils;
 import com.cn.xxx.yhsscore.model.UserDO;
 import com.cn.xxx.yhsscore.model.WechatUserBindDO;
 import com.cn.xxx.yhsscore.service.UserService;
@@ -23,6 +27,7 @@ import com.cn.xxx.yhsscore.vo.resp.RegistVO;
 @Scope("prototype")
 @RequestMapping("/bind")
 public class UserBindController extends BaseController{
+	private Logger LOGGER = LoggerFactory.getLogger(UserBindController.class);
 	
 	@Autowired
 	private WechatUserBindService wechatUserBindService ;
@@ -34,12 +39,17 @@ public class UserBindController extends BaseController{
 	public Map<String,Object> regist(@RequestBody RegistVO regist) throws Exception{
 		//数据有效性校验
 		validateRegist(regist);
-		
 		Map<String,Object> result = new HashMap<String, Object>();
 		result.put("success", true);
 		String openid = (String) this.request.getSession().getAttribute("openid");
 //		String openid = "oEybKwtejlI4Ng9fUBc6NrGkO_E8";
-		this.wechatUserBindService.doRegist(regist, openid);
+		UserDO userInfo = this.wechatUserBindService.doRegist(regist, openid);
+		if (userInfo == null) {
+			result.put("success", false);
+			result.put("reason", "新增用户失败");
+		}else {
+			request.getSession().setAttribute("user", userInfo);
+		}
 		return result ;
 	}
 	private void validateRegist(RegistVO regist) throws Exception{
@@ -49,6 +59,8 @@ public class UserBindController extends BaseController{
 		if(regist.getUser().getSchool()==null){
 			throw new Exception("用户学校信息缺失");
 		}
+		LOGGER.info(JsonUtil.writeValueAsString(regist));
+		LOGGER.info("security-size>>>"+regist.getUser().getSecurity().size());
 		if(regist.getUser().getSecurity()==null || regist.getUser().getSecurity().size() != 3){
 			throw new Exception("用户密保问题有误");
 		}

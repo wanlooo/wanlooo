@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -23,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @Entity
 @Table(name="YHSS_USER")
-@JsonIgnoreProperties({"lastUpdate","deleted","creator","lastModifier","lastModifierName","password","visiteUser","contract","address","security","pointDetail"})
+@JsonIgnoreProperties({"lastUpdate","deleted","creator","lastModifier","lastModifierName"})
 public class UserDO extends AbstractBaseDO {
 	private static final long serialVersionUID = 1L;
 	
@@ -44,13 +45,13 @@ public class UserDO extends AbstractBaseDO {
 	private String email;
 	private String qq;
 	private String visiteCode;//邀请码 用户自己的邀请码
-	
+	private Long currentPoints;//当前总积分
 	private UserDO visiteUser ; //邀请自己的上级用户
 	private SchoolDO school ;//学校信息
 	private Set<ContractDO> contract ;
 	private Set<AddressDO> address ;
 	private Set<SecretSecurityDO> security;
-	private Set<PointDetailDO> pointDetails;
+	private MemberLevelRulesDO memberLevelRules;
 	private Set<OrderDO> orders;
 	
 	@OneToMany(mappedBy="user",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
@@ -97,12 +98,13 @@ public class UserDO extends AbstractBaseDO {
 	public void setSecurity(Set<SecretSecurityDO> security) {
 		this.security = security;
 	}
-	@OneToMany(mappedBy="user",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
-	public Set<PointDetailDO> getPointDetails() {
-		return pointDetails;
+	@ManyToOne(fetch=FetchType.LAZY, optional=true, cascade={CascadeType.ALL})
+	@JoinColumn(name="MEMBER_LEVEL",referencedColumnName="MEMBER_LEVEL")
+	public MemberLevelRulesDO getMemberLevelRules() {
+		return memberLevelRules;
 	}
-	public void setPointDetails(Set<PointDetailDO> pointDetails) {
-		this.pointDetails = pointDetails;
+	public void setMemberLevelRules(MemberLevelRulesDO memberLevelRules) {
+		this.memberLevelRules = memberLevelRules;
 	}
 	@Column(name="USER_ID")
 	public String getUserId() {
@@ -224,5 +226,13 @@ public class UserDO extends AbstractBaseDO {
 	public void setImageDate(String imageDate) {
 		this.imageDate = imageDate;
 	}
+	@Column(name="CURRENT_POINTS")
+	public Long getCurrentPoints() {
+		return currentPoints;
+	}
+	public void setCurrentPoints(Long currentPoints) {
+		this.currentPoints = currentPoints;
+	}
+	
 
 }

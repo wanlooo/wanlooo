@@ -2,6 +2,7 @@ package com.cn.xxx.yhsscore.vo.resp;
 
 import com.cn.xxx.yhsscore.model.UserDO;
 
+
 public class RegistVO {
 
 	private UserDO user ;

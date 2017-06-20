@@ -6,10 +6,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <title>个人信息</title>
 <link href="css/personal.css" rel="stylesheet"/>
+<!-- layer -->
+<script type="text/javascript" src="js/layer/mobile/layer.js"></script>
+
 <script language="javascript" src="js/jquery-1.12.4.min.js"></script>
 <script src="js/angular.min.js"></script>
 <script type="text/javascript" src="angularjs/app.js"></script>
 <script type="text/javascript" src="angularjs/controller/userInfoCtrl.js"></script>
+
 </head>
 <body ng-app="app"  ng-controller="userInfoCtrl" ng-init='init()'>
 <div class="first">
@@ -43,16 +47,16 @@
 </div> -->
 
 <div class="third">
-	<div class="title">我的等级<span class="fbright rbtn">等级说明</span></div>
+	<div class="title">我的等级<span class="fbright rbtn" ng-click="showAllLevelRules();">等级说明</span></div>
     <div class="content">
     	<div class="d1 inblock">
         	<div class="line1">当前级别</div>
-            <div class="line2">2</div>
+            <div class="line2"><span ng-bind="user.memberLevelRules.memberLevel"></span></div>
             <div class="line3"><span class="bg1"></span></div>
         </div>
         <div class="d2 inblock">
-        	<div class="line1">升级还需要经验值</div>
-            <div class="line2">50%</div>
+        	<div class="line1">升级还需积分</div>
+            <div class="line2"><span ng-bind="user.memberLevelRules.nextIntegral-user.currentPoints"></span></div>
             <div class="line3"><span class="bg3"></span></div>
         </div>
         <div class="d3 inblock">
@@ -70,13 +74,16 @@
         </table>
         <div>
             <div id="tab1" class="cnt show">
-            当前特权：这里是当前特权的一些介绍，哈哈哈哈哈哈哈吼吼后防的哈是复读机啊是。
+          		<!-- 当前特权：这里是当前特权的一些介绍，哈哈哈哈哈哈哈吼吼后防的哈是复读机啊是。 -->
+          		<span ng-bind="user.memberLevelRules.rights"></span>
             </div>
             <div id="tab2" class="cnt hide">
-            升级条件：这里是当前特权的一些介绍，哈哈哈哈哈哈哈吼吼后防的哈是复读机啊是。
+            	<!-- 升级条件：这里是当前特权的一些介绍，哈哈哈哈哈哈哈吼吼后防的哈是复读机啊是。 -->
+            	<span ng-bind="user.memberLevelRules.upgrateConditions"></span>
             </div>
             <div id="tab3" class="cnt hide">
-            设置轻松购：在这里介绍什么是轻松购，轻松购可以达到的效果如何。
+            	<!-- 设置轻松购：在这里介绍什么是轻松购，轻松购可以达到的效果如何。 -->
+            	<span ng-bind="user.memberLevelRules.nextRights"></span>
             </div>
         </div>
     </div>

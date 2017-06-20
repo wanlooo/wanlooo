@@ -2,10 +2,16 @@ package com.cn.xxx.yhsscore.service.impl;
 
 import java.util.List;
 
+import org.apache.commons.beanutils.BeanUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cn.xxx.commons.util.JsonUtils;
 import com.cn.xxx.wxcore.util.AdvancedUtil;
+import com.cn.xxx.wxcore.vo.WeixinUserInfo;
+import com.cn.xxx.yhsscore.dao.MemberLevelRulesDao;
 import com.cn.xxx.yhsscore.dao.SchoolDao;
 import com.cn.xxx.yhsscore.dao.SecretSecurityDao;
 import com.cn.xxx.yhsscore.dao.UserDao;
@@ -23,7 +29,7 @@ import com.cn.xxx.yhsscore.vo.resp.RegistVO;
 @Service
 public class WechatUserBindServiceImpl implements WechatUserBindService {
 
-//	private Logger logger = LoggerFactory.getLogger(WechatUserBindServiceImpl.class);
+	private Logger logger = LoggerFactory.getLogger(WechatUserBindServiceImpl.class);
 	
 	@Autowired
 	private WechatUserBindDao wechatUserBindDao ;
@@ -39,6 +45,8 @@ public class WechatUserBindServiceImpl implements WechatUserBindService {
 	private SchoolDao schoolDao ;
 	@Autowired 
 	private SecretSecurityDao secretSecurityDao ;
+	@Autowired
+	private MemberLevelRulesDao memberLevelRulesDao;
 	
 	@Override
 	public WechatUserBindDO getWechatUserBindDOAllByOpenid(String openid) {
@@ -68,7 +76,7 @@ public class WechatUserBindServiceImpl implements WechatUserBindService {
 	@Override
 	public UserDO doRegist(RegistVO regist,String openid) throws Exception {
 		UserDO userDO = regist.getUser();
-		
+		logger.info(">>>>>>>入参:"+JsonUtils.objectToJson(regist));
 		//userName,phoneNo校验
 		List<UserDO> list = this.userDao.queryUserDOByUserNamesOrPhoneNos(userDO.getUserName(),userDO.getPhoneNo());
 		if (list!=null && list.size()>0) {
@@ -78,9 +86,17 @@ public class WechatUserBindServiceImpl implements WechatUserBindService {
 		//根据openid查询WechatUserDO,如无记录则重新插入记录
 		WechatUserDO wechatUser= this.wechatUserService.queryOrSaveWechatUserByOpenid(openid);
 		if(wechatUser == null){
-			throw new Exception("微信用户信息获取失败");
+			logger.info("微信用户信息获取为空，重新拉取用户微信信息进行入库操作");
+			WeixinUserInfo userInfo = AdvancedUtil.getUserInfo(openid);
+			try {
+				BeanUtils.copyProperties(wechatUser, userInfo);
+			} catch (Exception e) {
+				logger.error(e.getMessage());
+				return null;
+			} 
+			wechatUserDao.saveOrUpdate(wechatUser);
 		}
-		
+
 		//从微信中获取nickName
 		userDO.setNickName(wechatUser.getNickname());
 		userDO.setImageUrl(wechatUser.getHeadimgurl());
@@ -88,11 +104,13 @@ public class WechatUserBindServiceImpl implements WechatUserBindService {
 		//邀请码处理
 		//1.设置邀请人id
 		if(userDO.getVisiteCode() != null && !userDO.getVisiteCode().trim().equals("")){
+			logger.info(".设置邀请人id");
 			UserDO visiteUser = this.userDao.queryUserDOByVisiteCode(userDO.getVisiteCode()) ;
 			if(visiteUser != null){
 				userDO.setVisiteUser(visiteUser);
 			}
 		}
+		logger.info("存学校信息>>>"+JsonUtils.objectToJson(userDO.getSchool()));
 		//保存学校信息
 		if(userDO.getSchool()!=null){
 			this.schoolDao.insertObject(userDO.getSchool());
@@ -112,6 +130,10 @@ public class WechatUserBindServiceImpl implements WechatUserBindService {
 			this.secretSecurityDao.insertObjects(userDO.getSecurity());
 		}
 		
+		//初始化总积分-0分
+		userDO.setCurrentPoints(0L);
+		//初始化会员等级-0级
+		userDO.setMemberLevelRules(memberLevelRulesDao.getRulesByLevel(0));
 		bind(userDO, wechatUser);
 		
 		return userDO ;
@@ -141,10 +163,8 @@ public class WechatUserBindServiceImpl implements WechatUserBindService {
 	**/
 	private WechatUserBindDO bind(UserDO user,WechatUserDO wechatUser) throws Exception{
 		// 验证绑定记录
-		WechatUserBindDO userBind = this.wechatUserBindDao
-				.queryWechatUserBindDOByUserId(user.getId());
-		WechatUserBindDO wechatUserBind = this.wechatUserBindDao
-				.queryWechatUserBindDOByWechatUserId(wechatUser.getId());
+		WechatUserBindDO userBind = this.wechatUserBindDao.queryWechatUserBindDOByUserId(user.getId());
+		WechatUserBindDO wechatUserBind = this.wechatUserBindDao.queryWechatUserBindDOByWechatUserId(wechatUser.getId());
 
 		if (userBind == null && wechatUserBind == null) {// 没有绑定记录
 			userBind = new WechatUserBindDO();
@@ -193,7 +213,7 @@ public class WechatUserBindServiceImpl implements WechatUserBindService {
 				this.wechatUserBindDao.saveOrUpdate(wechatUserBind);
 			}
 		}
-
+		
 		return userBind ;
 	}
 	

@@ -46,7 +46,7 @@ public class EntryController {
 		
 		stateUrl.put("login", "/yhssui/login.html");
 		stateUrl.put("hyuserinfo", "/yhssui/userInfo.html");
-		
+		stateUrl.put("orderlist", "/yhssui/order-list.html");
 	}
 	
 	/**

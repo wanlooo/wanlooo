@@ -19,7 +19,8 @@
 		<!-- <li class="center2"><a href="#" class="center3" style="padding: 20px 15px 10px 15px;">待收货</a></li> -->
 	</ul>
 </div>
-<div class="container-goods" ng-repeat="order in orders">
+<center><span ng-if="orders.length==0">您当前没有订单</span></center>
+<div class="container-goods" ng-if="orders.length>0" ng-repeat="order in orders">
 	<div class="title-goods">
 		<div class="row">
 			<div class="col-xs-6">万麓商城<span></span></div>

@@ -58,7 +58,7 @@ public class TestLogin extends JunitContext {
 		}
 		
 		user.setSecurity(ss);
-		regist.setUser(user);
+//		regist.setUser(user);
 		
 		String openid = "oEybKwtejlI4Ng9fUBc6NrGkO_E8";
 		

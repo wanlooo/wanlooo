@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @Entity
 @Table(name = "YHSS_ORDER")
-@JsonIgnoreProperties({"lastUpdate","deleted","creator","lastModifier","lastModifierName","orderDetails"})
+@JsonIgnoreProperties({"lastUpdate","deleted","creator","lastModifier","lastModifierName","orderDetails","user"})
 public class OrderDO extends AbstractBaseDO {
 
 	private static final long serialVersionUID = -6436514501676105686L;
