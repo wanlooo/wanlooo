@@ -3,8 +3,14 @@ package com.cn.xxx.web.vo.response;
 import java.util.Date;
 import java.util.Set;
 
+import com.cn.xxx.yhsscore.model.AddressDO;
+import com.cn.xxx.yhsscore.model.ContractDO;
+import com.cn.xxx.yhsscore.model.MemberLevelRulesDO;
+import com.cn.xxx.yhsscore.model.OrderDO;
 import com.cn.xxx.yhsscore.model.PointDetailDO;
 import com.cn.xxx.yhsscore.model.SchoolDO;
+import com.cn.xxx.yhsscore.model.SecretSecurityDO;
+import com.cn.xxx.yhsscore.model.UserDO;
 
 public class UserVO {
 	private Long id ;
@@ -24,6 +30,51 @@ public class UserVO {
 	
 	private SchoolDO school ;
 	private Set<PointDetailDO> pointDetails;
+	
+	private Long currentPoints;//当前总积分
+	private UserDO visiteUser ; //邀请自己的上级用户
+	private Set<ContractDO> contract ;
+	private Set<AddressDO> address ;
+	private Set<SecretSecurityDO> security;
+	private MemberLevelRulesDO memberLevelRules;
+	
+	public Long getCurrentPoints() {
+		return currentPoints;
+	}
+	public void setCurrentPoints(Long currentPoints) {
+		this.currentPoints = currentPoints;
+	}
+	public UserDO getVisiteUser() {
+		return visiteUser;
+	}
+	public void setVisiteUser(UserDO visiteUser) {
+		this.visiteUser = visiteUser;
+	}
+	public Set<ContractDO> getContract() {
+		return contract;
+	}
+	public void setContract(Set<ContractDO> contract) {
+		this.contract = contract;
+	}
+	public Set<AddressDO> getAddress() {
+		return address;
+	}
+	public void setAddress(Set<AddressDO> address) {
+		this.address = address;
+	}
+	public Set<SecretSecurityDO> getSecurity() {
+		return security;
+	}
+	public void setSecurity(Set<SecretSecurityDO> security) {
+		this.security = security;
+	}
+	public MemberLevelRulesDO getMemberLevelRules() {
+		return memberLevelRules;
+	}
+	public void setMemberLevelRules(MemberLevelRulesDO memberLevelRules) {
+		this.memberLevelRules = memberLevelRules;
+	}
+	
 	public Long getId() {
 		return id;
 	}

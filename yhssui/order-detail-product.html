@@ -10,8 +10,10 @@
   <script type="text/javascript" src="js/jquery-1.12.4.min.js" ></script>
   <script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
   <script type="text/javascript" src="js/moment/moment.js"></script>
+  <script src="js/layer/mobile/layer.js"></script>
   <script src="js/angular.min.js"></script>
   <script type="text/javascript" src="angularjs/app.js"></script>
+  <script type="text/javascript" src="angularjs/service/orderService.js"></script>
   <script type="text/javascript" src="angularjs/controller/orderDetailCtrl.js"></script>
 </head>
 <body ng-app="app"  ng-controller="orderDetailCtrl">
@@ -20,6 +22,9 @@
     <div ng-if="order.orderStatus=='WP'">
         <div><p>等待买家付款</p></div>
         <div><p>剩2天23小时自动关闭</p></div>
+    </div>
+    <div ng-if="order.orderStatus=='PF'">
+        <div><p>买家已付款，等待卖家发货</p></div>
     </div>
   </div>
 </div>
@@ -93,7 +98,10 @@
     <div class="text-right" ng-if="order.orderStatus=='WP'">
         <!-- <button type="button" class="btn btn-default navbar-btn">修改地址</button> -->
         <button type="button" class="btn btn-default navbar-btn">取消订单</button>
-        <button type="button" class="btn btn-mystyle">付款</button>
+        <button type="button" class="btn btn-mystyle" ng-click="pay()">付款</button>
+    </div>
+    <div class="text-right" ng-if="order.orderStatus=='PF'">
+        <button type="button" class="btn btn-mystyle">申请退款</button>
     </div>
   </div>
 </nav>

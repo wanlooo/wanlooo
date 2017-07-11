@@ -1,5 +1,5 @@
 // 地址页面Ctrl
-app.controller('orderDetailCtrl', function($scope,$http) {
+app.controller('orderDetailCtrl', function($scope,$http,orderService) {
 	if(request("orderNo")==''){
 		alert("请正确进入该页面");
 		return ;
@@ -42,7 +42,37 @@ app.controller('orderDetailCtrl', function($scope,$http) {
 			return returnValue; 
 		}
 	};
-    
+    $scope.pay = function(){
+    	//拼接后台需要支付信息
+//    	private String orderNo;//订单号
+//        private String payType;//支付方式
+//        private String amount;//支付金额
+//        private String paymentNo;//支付流水号
+        var payParamInfo = {
+        		orderNo:$scope.order.orderNo
+        };
+    	//调起支付
+    	orderService.pay(payParamInfo).success(
+			function(response){
+				if (response.success) {
+					//支付成功
+					layer.open({
+					    content: '支付成功'
+					    ,btn: ['刷新']
+					    ,yes: function(index){
+					      location.reload();
+					      layer.close(index);
+					    }
+					});
+				}else {
+					//信息框
+					layer.open({
+					    content: response.reason
+					    ,btn: '确定'
+					 });
+				}
+    	});
+    }
 });
 
 

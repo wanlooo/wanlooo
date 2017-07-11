@@ -53,8 +53,7 @@
 		<property name="maxOpenPreparedStatements" value="100" />
 	</bean>
 
-	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
@@ -76,7 +75,22 @@
 		<property name="sessionFactory" ref="sessionFactory" /> 
 		<property name="dataSource" ref="dataSource" /> 
 	</bean>
-	
+	<!-- mybatis sqlSessionFactory -->
+	<bean id="sqlSessionFactory" class="org.apache.ibatis.session.SqlSessionFactory">
+		<property name="configLocation" value="mybatis/SqlMapConfig.xml"></property>
+		<property name="mapperLocations" value="classpath:com/cn/xxx/**/mapper/**/*.xml" />
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	<!-- mybatis mapper-->
+	<!-- 批量配置mapper代理类，默认bean的id为类名首字母小写 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- 配置扫描的包 -->
+		<property name="basePackage" value="com.cn.xxx.wxcore.mapper,com.cn.xxx.wxcore.dao"></property>
+		<!-- 默认不需要配置SqlSessionFactory（只有一个SqlSessionFactory时），单独配置也可以 
+				默认会在上下文中查找
+		-->
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+	</bean>
 	<!-- 事务控制 -->
 	<tx:advice id="hibernateTxAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
