@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="css/orderlist.css">
   <script src="js/angular.min.js"></script>
   <script type="text/javascript" src="angularjs/app.js"></script>
+  <script type="text/javascript" src="angularjs/service/orderService.js"></script>
   <script type="text/javascript" src="angularjs/controller/orderCtrl.js"></script>
 </head>
 <body ng-app="app"  ng-controller="orderCtrl">
@@ -39,7 +40,7 @@
 				<p class="text-over"><span ng-bind ='order.product.description'></span></p> 
 			</div>
 			<div class="col-xs-2">
-				<p class="text-right"> ¥<strong><span ng-bind ='order.amount/order.quantity'></span></strong><br>×<span ng-bind ='order.quantity'>1</span></p>
+				<p class="text-right"> ¥<strong><span ng-bind ='order.amount'></span></strong><br>×<span ng-bind ='order.quantity'>1</span></p>
 			</div>
 		</div>
 	</div>
@@ -50,7 +51,7 @@
 	</div>
 	<div class="title-goods text-right">
 		<button type="button" class="btn btn-default" ng-show="order.status=='WP'">取消</button>
-		<button type="button" class="btn btn-mystyle" ng-show="order.status=='WP'">支付</button>
+		<button type="button" class="btn btn-mystyle" ng-click="pay(order)" ng-show="order.status=='WP'">支付</button>
 		<button type="button" class="btn btn-default" ng-show="order.status!='WP'&&order.status!='XX'">查看物流</button>
 		<button type="button" class="btn btn-mystyle" ng-show="order.status=='DD'">确认收货</button>
 	</div>

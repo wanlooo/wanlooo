@@ -1,5 +1,5 @@
 // 地址页面Ctrl
-app.controller('orderCtrl', function($scope,$http) {
+app.controller('orderCtrl', function($scope,$http,orderService) {
 	$scope.orders = [] ;
 	$scope.waitPayOrder = 1 ;
 	var orderList = [] ;
@@ -64,7 +64,32 @@ app.controller('orderCtrl', function($scope,$http) {
 			return returnValue; 
 		}
 	};
-    
+    $scope.pay = function(order){
+    	var payParamInfo = {
+    		orderNo:order.orderNo
+    	};
+    	//调起支付
+    	orderService.pay(payParamInfo).success(
+			function(response){
+				if (response.success) {
+					//支付成功
+					layer.open({
+					    content: '支付成功'
+					    ,btn: ['刷新']
+					    ,yes: function(index){
+					      location.reload();
+					      layer.close(index);
+					    }
+					});
+				}else {
+					//信息框
+					layer.open({
+					    content: response.reason
+					    ,btn: '确定'
+					 });
+				}
+    	});
+    }
 });
 
 

@@ -13,4 +13,6 @@ public interface OrderService {
 	List<OrderDO> getRecentListByUser(int months) throws Exception ;
 	
 	OrderDO getOrderByUser(String orderNO) throws Exception ;
+	
+	OrderDO updateOrderStatus(String orderNo,String status) throws Exception;
 }

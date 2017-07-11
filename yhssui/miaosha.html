@@ -58,11 +58,11 @@
                             <div class="productname"><span ng-bind="active.product.name"></span></div>
                             <!--star-->
                             <div class="star">
-                                <i ng-repeat="s in getcountlist(active.star)"><img src="img/star1.png"></i>
+                                <i ng-repeat="s in getcountlist(active.product.starLevel.starLevel)"><img src="img/star1.png"></i>
                                 <!-- <i><img src="img/star1.png"></i>
                                 <i><img src="img/star1.png"></i>
                                 <i><img src="img/star1.png"></i> -->
-                                <i ng-repeat="s1 in getrestcountlist(active.star)"><img src="img/star2.png"></i>
+                                <i ng-repeat="s1 in getrestcountlist(active.product.starLevel.starLevel)"><img src="img/star2.png"></i>
                             </div>
                             <!--star end-->
                             

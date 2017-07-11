@@ -43,8 +43,8 @@ public class UserController {
 		Map<String,Object> result = new HashMap<String, Object>();
 		result.put("success", true);
 		UserDO userDO = this.userService.getCacheUser();
-//		UserVO userVO = this.userFactory.convertUserDO2UserVO(userDO);
-		result.put("data", userDO);
+		UserVO userVO = this.userFactory.convertUserDO2UserVO(userDO);
+		result.put("data", userVO);
 		return result ;
 	}
 	

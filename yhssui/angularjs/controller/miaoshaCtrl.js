@@ -18,7 +18,7 @@ app.controller('miaoshaCtrl', function($scope, miaoshaService) {
 				if(response.success && response.data.length>0){
 					var list = response.data ;
 					for (var i = 0; i < list.length; i++) {
-						var active = list[i];
+						var active = list[i]; 
 						for (var j = $scope.time_periods.length - 1; j >= 0; j--) {
 							if(active.limitTime >= $scope.time_periods[j].period){
 								$scope.time_periods[j].actives.push(active);
@@ -147,7 +147,7 @@ app.controller('miaoshaCtrl', function($scope, miaoshaService) {
 	//获取星级循环
 	$scope.getcountlist = function(count){
 		var countlist=[];
-		for (var i = 0; i < 3; i++) {
+		for (var i = 0; i < count; i++) {
 			countlist.push(i);
 		}
 		return countlist;
@@ -155,7 +155,7 @@ app.controller('miaoshaCtrl', function($scope, miaoshaService) {
 	$scope.getrestcountlist = function(count){
 		var totalcount = 5;
 		var countlist=[];
-		for (var i = 0; i < totalcount-3; i++) {
+		for (var i = 0; i < totalcount-count; i++) {
 			countlist.push(i);
 		}
 		return countlist;

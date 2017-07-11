@@ -141,7 +141,7 @@ app.controller('miaoshaDetailCtrl', function($scope, miaoshaService) {
 	//获取星级循环
 	$scope.getcountlist = function(count){
 		var countlist=[];
-		for (var i = 0; i < 4; i++) {
+		for (var i = 0; i < count; i++) {
 			countlist.push(i);
 		}
 		return countlist;
@@ -149,7 +149,7 @@ app.controller('miaoshaDetailCtrl', function($scope, miaoshaService) {
 	$scope.getrestcountlist = function(count){
 		var totalcount = 5;
 		var countlist=[];
-		for (var i = 0; i < totalcount-4; i++) {
+		for (var i = 0; i < totalcount-count; i++) {
 			countlist.push(i);
 		}
 		return countlist;
